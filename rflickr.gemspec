@@ -3,7 +3,7 @@ Gem::Specification.new do |spec|
   spec.email = 'contact@digitalpardoe.co.uk'
   spec.date = '2009-06-02'
   spec.version = '1.0.0.0'
-  spec.name = 'rFlickr'
+  spec.name = 'rflickr'
   spec.has_rdoc = false
   spec.homepage = 'http://github.com/digitalpardoe/rflickr/'
  
