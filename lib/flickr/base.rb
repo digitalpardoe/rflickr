@@ -380,7 +380,7 @@ class Flickr::Photo
 		:license_id, :description, :dates, :taken,
 		:lastupdate, :takengranularity, :cancomment, :canaddmeta,
 		:comments, :rotation, :notes, :urls, :permaddmeta,
-		:permcomment, :originalformat
+		:permcomment, :originalformat, :farm
 
 	attr_reader :flickr
 
@@ -409,7 +409,7 @@ class Flickr::Photo
 	def contexts() @contexts ||= @flickr.photos.getAllContexts(self) end
 
 	def url(size=nil)
-		base = 'http://static.flickr.com'
+		base = "http://farm#{@farm}.static.flickr.com"
 		ext = (size == 'o') ? self.originalformat : 'jpg'
 		return size ?
 			"#{base}/#@server/#{@id}_#{@secret}_#{size}.#{ext}" :
@@ -434,6 +434,7 @@ class Flickr::Photo
 		photo.title = att['title'] || cond_text(xml.elements,'title')
 		photo.license_id = att['license']
 		photo.rotation = att['rotation'].to_i if att['rotation']
+		photo.farm = att['farm'].to_i if att['farm']
 
 		photo.ispublic = (att['ispublic'].to_i == 1) if att['ispublic']
 		photo.isfriend = (att['isfriend'].to_i == 1) if att['isfriend']
