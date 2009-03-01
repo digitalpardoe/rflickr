@@ -128,7 +128,6 @@ class Flickr
 		@people = nil
 		@photos = nil
 		@photosets = nil
-		@test = nil
 		@urls = nil
 
 		@ticket_by_id = {}
@@ -150,7 +149,6 @@ class Flickr
 	def photos() @photos ||= Photos.new(self) end
 	def photosets() @photosets ||= PhotoSets.new(self) end
 	def reflection() @reflection ||= Reflection.new(self) end
-	def test() @test ||= Test.new(self) end
 	def urls() @urls ||= Urls.new(self) end
 	def tags() @tags ||= Tags.new(self) end
 	def interestingness() @interestingness ||= Interestingness.new(self) end
