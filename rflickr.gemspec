@@ -2,13 +2,13 @@ Gem::Specification.new do |spec|
   spec.author = 'digital:pardoe'
   spec.email = 'contact@digitalpardoe.co.uk'
   spec.date = '2009-06-02'
-  spec.version = '1.1.0.0'
+  spec.version = '1.1.0.1'
   spec.name = 'rflickr'
   spec.has_rdoc = false
   spec.homepage = 'http://github.com/digitalpardoe/rflickr/'
  
   spec.files=%w(
-    LICENCE
+    LICENSE
     README
     lib/flickr/auth.rb
     lib/flickr/base.rb
