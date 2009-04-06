@@ -2,7 +2,7 @@ Gem::Specification.new do |spec|
   spec.author = 'digital:pardoe'
   spec.email = 'contact@digitalpardoe.co.uk'
   spec.date = '2009-31-03'
-  spec.version = '1.1.1'
+  spec.version = '1.1.0.1'
   spec.name = 'rflickr'
   spec.has_rdoc = false
   spec.homepage = 'http://github.com/digitalpardoe/rflickr/'
