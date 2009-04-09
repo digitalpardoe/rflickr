@@ -11,11 +11,11 @@ Gem::Specification.new do |s|
   s.email = %q{contact@digitalpardoe.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.rdoc"
+    "README.markdown"
   ]
   s.files = [
     "LICENSE",
-    "README.rdoc",
+    "README.markdown",
     "Rakefile",
     "VERSION.yml",
     "lib/flickr.rb",
