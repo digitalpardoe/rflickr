@@ -1,3 +1,5 @@
+= rflickr
+
 To use this version of rFlickr, first you will need to install
 the RubyGem you can do by (from a command line):
 
@@ -20,3 +22,7 @@ use the instructions above instead.
 
 This project is still a work in progress, bear with me whilst it is
 set up.
+
+== Copyright
+
+Copyright (c) 2009 Alex Pardoe. See LICENSE for details.
