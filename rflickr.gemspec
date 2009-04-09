@@ -37,8 +37,8 @@ Gem::Specification.new do |s|
     "lib/flickr/transform.rb",
     "lib/flickr/upload.rb",
     "lib/flickr/urls.rb",
-    "spec/rflickr_spec.rb",
-    "spec/spec_helper.rb"
+    "test/rflickr_test.rb",
+    "test/test_helper.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/digitalpardoe/rflickr}
@@ -47,8 +47,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{rFlickr is a Ruby interface to the Flickr API}
   s.test_files = [
-    "spec/rflickr_spec.rb",
-    "spec/spec_helper.rb"
+    "test/rflickr_test.rb",
+    "test/test_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
