@@ -26,7 +26,7 @@ class Flickr::Groups < Flickr::APIBase
 	# category can be a Category or nsid string
 	def browse(category=nil)
 		category=category.id if (category.class == Flickr::Category ||
-			category.class == Flickr::SubCategory )
+			  category.class == Flickr::SubCategory )
 
 		args = category ?  {'cat_id' => category } : {}
 		res = @flickr.call_method('flickr.groups.browse',args)
@@ -89,7 +89,7 @@ class Flickr::Groups < Flickr::APIBase
 			att = e.attributes
 			nsid = att['nsid']
 			g = @flickr.group_cache_lookup(nsid) ||
-				Flickr::Group.new(@flickr,nsid)
+			  Flickr::Group.new(@flickr,nsid)
 			g.name = att['name']
 			g.eighteenplus = att['eighteenplus'].to_i == 1
 

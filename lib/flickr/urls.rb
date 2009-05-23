@@ -50,8 +50,8 @@ class Flickr::Urls < Flickr::APIBase
 		nsid = els['/group'].attributes['id']
 
 		g = @flickr.group_cache_lookup(nsid) ||
-			Flickr::Group.new(@flickr,nsid,
-					els['/group/groupname'].text)
+		  Flickr::Group.new(@flickr,nsid,
+			els['/group/groupname'].text)
 		@flickr.group_cache_store(g)
 		return g
 	end
@@ -61,8 +61,8 @@ class Flickr::Urls < Flickr::APIBase
 		els = res.elements
 		nsid = els['/user'].attributes['id']
 		p = @flickr.person_cache_lookup(nsid) ||
-			Flickr::Person.new(@flickr,nsid,
-				els['/user/username'].text)
+		  Flickr::Person.new(@flickr,nsid,
+			els['/user/username'].text)
 		@flickr.person_cache_store(p)
 		return p
 	end

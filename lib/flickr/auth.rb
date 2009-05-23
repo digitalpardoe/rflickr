@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # rFlickr: A Ruby based Flickr API implementation.
 # Copyright (C) 2009, Alex Pardoe (digital:pardoe)
 #
@@ -45,7 +43,7 @@ class Flickr::Auth < Flickr::APIBase
 		args['frob'] = self.frob
 		args['api_sig'] = @flickr.sign(args)
 		return "http://flickr.com/services/auth/?"+
-			args.to_a.map{|arr| arr.join('=')}.join('&')
+		  args.to_a.map{|arr| arr.join('=')}.join('&')
 	end
 
 	def frob=(frob) @frob = frob end
@@ -63,20 +61,20 @@ class Flickr::Auth < Flickr::APIBase
 		#
 		# Backwwards compatible with old token storage.
 		@token = token.include?('<') ?
-			Flickr::Token.from_xml(REXML::Document.new(token)) :
-			@token = checkToken(token)
+		  Flickr::Token.from_xml(REXML::Document.new(token)) :
+		  @token = checkToken(token)
 	end
 
 	def getToken(frob=nil)
 		frob ||= @frob
 		res=@flickr.call_unauth_method('flickr.auth.getToken',
-				'frob'=>frob)
+			'frob'=>frob)
 		@token = Flickr::Token.from_xml(res)
 	end
 
 	def getFullToken(mini_token)
 		res = flickr.call_unauth_method('flickr.auth.getFullToken',
-				'mini_token' => mini_token)
+			'mini_token' => mini_token)
 		@token = Flickr::Token.from_xml(res)
 	end
 

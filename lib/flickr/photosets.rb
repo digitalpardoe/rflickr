@@ -33,9 +33,9 @@ class Flickr::PhotoSets < Flickr::APIBase
 
 	def create(title,primary_photo, description = nil)
 		primary_photo = primary_photo.id if
-			primary_photo.class == Flickr::Photo
+		primary_photo.class == Flickr::Photo
 		args = { 'title' => title, 'primary_photo_id' =>
-			primary_photo}
+			  primary_photo}
 		args['description'] = description if description
 		res = @flickr.call_method('flickr.photosets.create',args)
 		id = res.elements['/photoset'].attributes['id']
@@ -64,7 +64,7 @@ class Flickr::PhotoSets < Flickr::APIBase
 	def editPhotos(photoset,primary_photo,photos)
 		photoset = photoset.id if photoset.class == Flickr::PhotoSet
 		primary_photo = primary_photo.id if
-			primary_photo.class == Flickr::Photo
+		primary_photo.class == Flickr::Photo
 		photos=photos.map{|p| p.id if p.class==Flickr::Photo}.join(',')
 		args = {'photoset_id' => photoset,
 			'primary_photo_id' => primary_photo,
@@ -119,6 +119,6 @@ class Flickr::PhotoSets < Flickr::APIBase
 		photosets=photosets.map { |ps|
 			(ps.class==Flickr::PhotoSet) ? ps.id : ps}.join(',')
 		@flickr.call_method('flickr.photosets.orderSets',
-				'photoset_ids' => photosets)
+			'photoset_ids' => photosets)
 	end
 end

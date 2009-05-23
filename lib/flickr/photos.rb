@@ -22,22 +22,22 @@ require 'flickr/base'
 
 class Flickr::Photos < Flickr::APIBase
 	def upload
-	require 'flickr/upload'
+		require 'flickr/upload'
 		@upload ||= Flickr::Upload.new(@flickr)
 	end
 
 	def licenses
-	require 'flickr/licenses'
+		require 'flickr/licenses'
 		@licenses ||= Flickr::Licenses.new(@flickr)
 	end
 
 	def notes
-	require 'flickr/notes'
+		require 'flickr/notes'
 		@notes ||= Flickr::Notes.new(@flickr)
 	end
 
 	def transform
-	require 'flickr/transform'
+		require 'flickr/transform'
 		@transform ||= Flickr::Transform.new(@flickr)
 	end
 
@@ -79,7 +79,7 @@ class Flickr::Photos < Flickr::APIBase
 			att = set.attributes
 			psid = att['id']
 			set = @flickr.photoset_cache_lookup(psid) ||
-				Flickr::PhotoSet.new(att['id'],@flickr)
+			  Flickr::PhotoSet.new(att['id'],@flickr)
 			set.title = att['title']
 
 			@flickr.photoset_cache_store(set)
@@ -90,7 +90,7 @@ class Flickr::Photos < Flickr::APIBase
 			ppid = att['id']
 
 			p = @flickr.photopool_cache_lookup(ppid) ||
-				Flickr::PhotoPool.new(ppid,@flickr)
+			  Flickr::PhotoPool.new(ppid,@flickr)
 			p.title = att['title']
 			@flickr.photopool_cache_store(ppid)
 			list << p
@@ -106,8 +106,8 @@ class Flickr::Photos < Flickr::APIBase
 		att = perms.attributes
 		phid = att['id']
 		photo = (photo.class == Flickr::Photo) ? photo :
-			(@flickr.photo_cache_lookup(phid) ||
-			 	Flickr::Photo.new(@flickr,phid))
+		  (@flickr.photo_cache_lookup(phid) ||
+			  Flickr::Photo.new(@flickr,phid))
 		photo.ispublic = (att['ispublic'].to_i == 1)
 		photo.isfriend = (att['isfriend'].to_i == 1)
 		photo.isfamily = (att['isfamily'].to_i == 1)
@@ -120,12 +120,12 @@ class Flickr::Photos < Flickr::APIBase
 			perm_addmeta)
 		photo = photo.id if photo.class == Flickr::Photo
 		args = {
-		'photo_id' => photo,
-		'is_public' => (is_public == true || is_public == 1) ? 1 : 0,
-		'is_friend' => (is_friend == true || is_friend == 1) ? 1 : 0,
-		'is_family' => (is_family == true || is_family == 1) ? 1 : 0,
-		'perm_comment' => perm_comment,
-		'perm_addmeta' => perm_addmeta
+			'photo_id' => photo,
+			'is_public' => (is_public == true || is_public == 1) ? 1 : 0,
+			'is_friend' => (is_friend == true || is_friend == 1) ? 1 : 0,
+			'is_family' => (is_family == true || is_family == 1) ? 1 : 0,
+			'perm_comment' => perm_comment,
+			'perm_addmeta' => perm_addmeta
 		}
 		res = @flickr.call_method('flickr.photos.setPerms',args)
 	end
@@ -135,11 +135,11 @@ class Flickr::Photos < Flickr::APIBase
 		args = {}
 		args['count'] = count if count
 		args['just_friends'] = just_friends ? '1' : '0' if
-			just_friends != nil
+		just_friends != nil
 		args['single_photo'] = single_photo ? '1' : '0' if
-			single_photo != nil
+		single_photo != nil
 		args['include_self'] = include_self ? '1' : '0' if
-			include_self != nil
+		include_self != nil
 		res= @flickr.call_method('flickr.photos.getContactsPhotos',args)
 		return Flickr::PhotoList.from_xml(res,@flickr)
 	end
@@ -153,14 +153,14 @@ class Flickr::Photos < Flickr::APIBase
 		args['count'] = count if count
 		args['user_id'] = user
 		args['just_friends'] = just_friends ? '1' : '0' if
-			just_friends != nil
+		just_friends != nil
 		args['single_photo'] = single_photo ? '1' : '0' if
-			single_photo != nil
+		single_photo != nil
 		args['include_self'] = include_self ? '1' : '0' if
-			include_self != nil
+		include_self != nil
 		res=@flickr.call_method('flickr.photos.getContactsPublicPhotos',
-		                        args)
-		 return Flickr::PhotoList.from_xml(res,@flickr)
+			args)
+		return Flickr::PhotoList.from_xml(res,@flickr)
 	end
 
 	def getContext(photo)
@@ -174,7 +174,7 @@ class Flickr::Photos < Flickr::APIBase
 		args = {}
 		args['dates'] = dates.map{|d| d.to_i}.join(',') if dates
 		args['taken_dates'] = taken_dates.map{|d| d.to_i}.join(',') if
-			taken_dates
+		taken_dates
 		res = @flickr.call_method('flickr.photos.getCounts',args)
 		list = []
 		res.elements['/photocounts'].each_element('photocount') do |el|
@@ -232,8 +232,8 @@ class Flickr::Photos < Flickr::APIBase
 	def getSizes(photo)
 		photo_id = (photo.class == Flickr::Photo) ? photo.id : photo
 		photo = (photo.class == Flickr::Photo) ? photo :
-			(@flickr.photo_cache_lookup(photo_id) ||
-			 	Flickr::Photo.new(@flickr,photo_id))
+		  (@flickr.photo_cache_lookup(photo_id) ||
+			  Flickr::Photo.new(@flickr,photo_id))
 		res = @flickr.call_method('flickr.photos.getSizes',
 			'photo_id' => photo_id )
 		photo.sizes = {}
@@ -250,12 +250,12 @@ class Flickr::Photos < Flickr::APIBase
 		photo = photo.id if photo.class == Flickr::Photo
 		date_posted = date_posted.to_i if date_posted.class == Time
 		date_taken = @flickr.mysql_datetime(date_taken) if
-			date_taken.class == Time
+		date_taken.class == Time
 		args = {'photo_id' => photo}
 		args['date_posted'] = date_posted if date_posted
 		args['date_taken'] = date_taken if date_taken
 		args['date_taken_granularity'] = date_taken_granularity if
-			date_taken_granularity
+		date_taken_granularity
 		@flickr.call_method('flickr.photos.setDates',args)
 	end
 
@@ -268,19 +268,19 @@ class Flickr::Photos < Flickr::APIBase
 	end
 
 	def search(user=nil,tags=nil,tag_mode=nil,text=nil,min_upload_date=nil,
-		max_upload_date=nil,min_taken_date=nil,max_taken_date=nil,
-		license=nil,extras=nil,per_page=nil,page=nil,sort=nil)
+			max_upload_date=nil,min_taken_date=nil,max_taken_date=nil,
+			license=nil,extras=nil,per_page=nil,page=nil,sort=nil)
 	
 		user = user.nsid if user.respond_to?(:nsid)
 		tags = tags.join(',') if tags.class == Array
 		min_upload_date = min_upload_date.to_i if
-			min_upload_date.class == Time
+		min_upload_date.class == Time
 		max_upload_date = max_upload_date.to_i if
-			max_upload_date.class == Time
+		max_upload_date.class == Time
 		min_taken_date = @flickr.mysql_datetime(min_taken_date) if
-			min_taken_date.class == Time
+		min_taken_date.class == Time
 		max_taken_date = @flickr.mysql_datetime(max_taken_date) if
-			max_taken_date.class == Time
+		max_taken_date.class == Time
 		license = license.id if license.class == Flickr::License
 		extras = extras.join(',') if extras.class == Array
 

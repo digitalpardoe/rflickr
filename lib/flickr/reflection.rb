@@ -22,7 +22,7 @@ require 'flickr/base'
 
 class Flickr::Method
 	attr_reader :name,:authenticated,:description,:response,:explanation,
-		:arguments, :errors
+	  :arguments, :errors
 
 	def initialize(name,authenticated,description,response,explanation)
 		@name = name
@@ -54,11 +54,11 @@ class Flickr::Reflection < Flickr::APIBase
 		els = res.elements
 		att = res.root.attributes
 		desc = els['/method/description'] ?
-			els['/method/description'].text : nil
+		  els['/method/description'].text : nil
 		resp = els['/method/response'] ?
-			els['/method/response'].text : nil
+		  els['/method/response'].text : nil
 		expl = els['/method/explanation'] ?
-			els['/method/explanation'].text : nil
+		  els['/method/explanation'].text : nil
 		meth = Flickr::Method.new(att['name'],att['needslogin'].to_i==1,
 			desc,resp,expl)
 		els['/method/arguments'].each_element do |el|

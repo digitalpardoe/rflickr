@@ -23,9 +23,9 @@ require 'flickr/base'
 class Flickr::Contacts < Flickr::APIBase
 	def getList(filter=nil)
 		res = filter ?
-			@flickr.call_method('flickr.contacts.getList') :
-			@flickr.call_method('flickr.contacts.getList',
-				'filter'=>filter)
+		  @flickr.call_method('flickr.contacts.getList') :
+		  @flickr.call_method('flickr.contacts.getList',
+			'filter'=>filter)
 		list = []
 		res.elements['/contacts'].each_element do |e|
 			att = e.attributes
@@ -50,7 +50,7 @@ class Flickr::Contacts < Flickr::APIBase
 	def getPublicList(user)
 		user = user.nsid if user.class == Flickr::Person
 		res = @flickr.call_method('flickr.contacts.getPublicList',
-				'user_id'=>user)
+			'user_id'=>user)
 		list = []
 		res.elements['/contacts'].each_element do |e|
 			att = e.attributes

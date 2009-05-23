@@ -28,8 +28,8 @@ class Flickr::Tags < Flickr::APIBase
 		xml = res.root
 		phid = xml.attributes['id']
 		photo = (photo.class == Flickr::Photo) ? photo :
-			(@flickr.photo_cache_lookup(phid) ||
-			 	Flickr::Photo.new(@flickr,phid))
+		  (@flickr.photo_cache_lookup(phid) ||
+			  Flickr::Photo.new(@flickr,phid))
 		if xml.elements['tags']
 			tags = []
 			xml.elements['tags'].each_element do |el|

@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # rFlickr: A Ruby based Flickr API implementation.
 # Copyright (C) 2009, Alex Pardoe (digital:pardoe)
 #
@@ -36,7 +34,7 @@ class Flickr
 	attr_reader :api_key
 	attr_accessor :async, :debug, :caching, :auth_mode
 
-############################### CACHE ACCESSORS ###########################
+	############################### CACHE ACCESSORS ###########################
 	def ticket_cache_lookup(id) @ticket_by_id[id] if @caching end
 
 	def ticket_cache_store(ticket)
@@ -82,23 +80,23 @@ class Flickr
 	def group_cache_store(group)
 		@group_by_id[group.id] = group if @caching
 	end
-############################################################################
+	############################################################################
 
 	def debug(*args) $stderr.puts(sprintf(*args)) if @debug end
 
 	def Flickr.todo
 		[
-	  'Refactor, especially more Class.from_xml methods',
-	  'More logical OO design, wrap the API methods to make transparent',
-	  'Class & method documentation',
-	  'Unit tests',
-	  'Implement missing methods (see flickr.reflection.missing_methods)'
+			'Refactor, especially more Class.from_xml methods',
+			'More logical OO design, wrap the API methods to make transparent',
+			'Class & method documentation',
+			'Unit tests',
+			'Implement missing methods (see flickr.reflection.missing_methods)'
 	  	]
 	end
+
 	def todo()
 		Flickr.todo+reflection.missing_methods.map{|m| 'Implement '+m}
 	end
-
 	
 	def initialize(token_cache=nil,api_key=API_KEY,
 			shared_secret=SHARED_SECRET,
@@ -112,7 +110,7 @@ class Flickr
 		@endpoint=endpoint
 		proto,host,port,path,user,pass=parse_url(@endpoint)
 		raise ProtoUnknownError.new("Unhandled protocol '#{proto}'") if
-			proto.downcase != 'http'
+		proto.downcase != 'http'
 		@client=XMLRPC::Client.new(host,path,port)
 		clear_cache
 	end
@@ -155,7 +153,7 @@ class Flickr
 
 	def call_method(method,args={})
 		@auth_mode ? call_auth_method(method,args) :
-		             call_unauth_method(method,args)
+		  call_unauth_method(method,args)
 	end
 
 	def call_unauth_method(method,args={})
@@ -168,7 +166,7 @@ class Flickr
 		begin
 			tries -= 1;
 			str = @async ? @client.call_async(method,args) :
-				@client.call(method,args)
+			  @client.call(method,args)
 			debug('RETURN: %s',str)
 			return REXML::Document.new(str)
 		rescue Timeout::Error => te
@@ -180,7 +178,7 @@ class Flickr
 			end
 		rescue REXML::ParseException => pe
 			return REXML::Document.new('<rsp>'+str+'</rsp>').
-				elements['/rsp']
+			  elements['/rsp']
 		rescue XMLRPC::FaultException => fe
 			$stderr.puts "ERR: #{fe.faultString} (#{fe.faultCode})"
 			raise fe
@@ -251,11 +249,11 @@ class Flickr::Token
 	end
 
 	def to_xml
-		    return "<auth><token>#{self.token}</token>"+
-		           "<perms>#{self.perms}</perms>"+
-			   "<user nsid=\"#{self.user.nsid}\" "+
-			   "username=\"#{self.user.username}\" "+
-			   "fullname=\"#{self.user.realname}\" /></auth>"
+		return "<auth><token>#{self.token}</token>"+
+		  "<perms>#{self.perms}</perms>"+
+		  "<user nsid=\"#{self.user.nsid}\" "+
+		  "username=\"#{self.user.username}\" "+
+		  "fullname=\"#{self.user.realname}\" /></auth>"
 	end
 end
 
@@ -272,10 +270,10 @@ end
 
 class Flickr::Person
 	attr_accessor :nsid, :username, :realname, :mbox_sha1sum, :location,
-	:photosurl, :profileurl, :photos_firstdate, :photos_firstdatetaken,
-	:photos_count, :info_fetched, :isadmin, :ispro, :iconserver,
-	:bandwidth_max, :bandwidth_used, :filesize_max, :upload_fetched,
-	:friend, :family, :ignored
+	  :photosurl, :profileurl, :photos_firstdate, :photos_firstdatetaken,
+	  :photos_count, :info_fetched, :isadmin, :ispro, :iconserver,
+	  :bandwidth_max, :bandwidth_used, :filesize_max, :upload_fetched,
+	  :friend, :family, :ignored
 
 	def initialize(flickr, nsid, username)
 		@flickr = flickr
@@ -307,11 +305,11 @@ class Flickr::Person
 		
 		p.username = username
 		p.isadmin = cond_attr(att,'isadmin') &&
-			cond_attr(att,'isadmin') == '1'
+		  cond_attr(att,'isadmin') == '1'
 		p.ispro = cond_attr(att,'ispro') &&
-			cond_attr(att,'ispro') == '1'
+		  cond_attr(att,'ispro') == '1'
 		p.iconserver = cond_attr(att,'iconserver') &&
-			cond_attr(att,'iconserver').to_i
+		  cond_attr(att,'iconserver').to_i
 		p.realname = cond_text(els,'/person/realname')
 		p.mbox_sha1sum = cond_text(els,'/person/mbox_sha1sum')
 		p.location = cond_text(els,'/person/location')
@@ -321,7 +319,7 @@ class Flickr::Person
 		p.photos_firstdate = Time.at(tstr.to_i) if tstr
 		tstr = cond_text(els, '/person/photos/firstdatetaken')
 		p.photos_firstdatetaken = Time.gm(*ParseDate.parsedate(tstr)) if
-			tstr
+		tstr
 		p.photos_count = cond_text(els,'/person/photos/count')
 		p.photos_count = p.photos_count if p.photos_count
 
@@ -330,14 +328,14 @@ class Flickr::Person
 		if els['/user/bandwidth']
 			att = els['/user/bandwidth'].attributes
 			p.bandwidth_max = cond_attr(att,'max') &&
-				cond_attr(att,'max').to_i
+			  cond_attr(att,'max').to_i
 			p.bandwidth_used = cond_attr(att,'used') &&
-				cond_attr(att,'used').to_i
+			  cond_attr(att,'used').to_i
 		end
 		if els['/user/filesize']
 			att = els['/user/filesize'].attributes
 			p.filesize_max = cond_attr(att,'max') &&
-				cond_attr(att,'max').to_i
+			  cond_attr(att,'max').to_i
 		end
 
 		p.upload_fetched = true if p.bandwidth_max
@@ -374,11 +372,11 @@ end
 
 class Flickr::Photo
 	attr_accessor :id, :owner_id, :secret, :server, :title, :ispublic,
-		:isfriend, :isfamily, :ownername, :dateadded,
-		:license_id, :description, :dates, :taken,
-		:lastupdate, :takengranularity, :cancomment, :canaddmeta,
-		:comments, :rotation, :notes, :urls, :permaddmeta,
-		:permcomment, :originalformat, :farm
+	  :isfriend, :isfamily, :ownername, :dateadded,
+	  :license_id, :description, :dates, :taken,
+	  :lastupdate, :takengranularity, :cancomment, :canaddmeta,
+	  :comments, :rotation, :notes, :urls, :permaddmeta,
+	  :permcomment, :originalformat, :farm
 
 	attr_reader :flickr
 
@@ -388,7 +386,7 @@ class Flickr::Photo
 
 	def max_size
 		sizes[:Original] ||  sizes[:Large] || sizes[:Medium] ||
-			sizes[:Small]
+		  sizes[:Small]
 	end
 
 	def initialize(flickr,id)
@@ -410,8 +408,8 @@ class Flickr::Photo
 		base = "http://farm#{@farm}.static.flickr.com"
 		ext = (size == 'o') ? self.originalformat : 'jpg'
 		return size ?
-			"#{base}/#@server/#{@id}_#{@secret}_#{size}.#{ext}" :
-			"#{base}/#@server/#{@id}_#{@secret}.jpg"
+		  "#{base}/#@server/#{@id}_#{@secret}_#{size}.#{ext}" :
+		  "#{base}/#@server/#{@id}_#{@secret}.jpg"
 	end
 
 	def delete() @flickr.photos.delete(self) end
@@ -424,10 +422,10 @@ class Flickr::Photo
 		photo ||= Flickr::Photo.new(flickr,phid)
 
 		photo.owner_id ||= att['owner'] || (xml.elements['owner'] &&
-			 xml.elements['owner'].attributes['nsid'])
+			  xml.elements['owner'].attributes['nsid'])
 		photo.secret = att['secret'] if att['secret']
 		photo.originalformat = att['originalformat'] if
-			att['originalformat']
+		att['originalformat']
 		photo.server = att['server'].to_i if att['server']
 		photo.title = att['title'] || cond_text(xml.elements,'title')
 		photo.license_id = att['license']
@@ -438,10 +436,10 @@ class Flickr::Photo
 		photo.isfriend = (att['isfriend'].to_i == 1) if att['isfriend']
 		photo.isfamily = (att['isfamily'].to_i == 1) if att['isfamily']
 		photo.ownername = att['ownername'] || (xml.elements['owner'] &&
-			 xml.elements['owner'].attributes['username'])
+			  xml.elements['owner'].attributes['username'])
 		photo.description = cond_text(xml.elements,'description')
 		photo.dateadded = Time.at(att['dateadded'].to_i) if
-			att['dateadded']
+		att['dateadded']
 		if xml.elements['exif']
 			list = []
 			xml.elements.each('exif') do |el|
@@ -521,7 +519,7 @@ class Flickr::Exif
 			att['tag'],att['label'])
 		exif.raw=element.elements['raw'].text if element.elements['raw']
 		exif.clean=element.elements['clean'].text if
-			element.elements['clean']
+		element.elements['clean']
 		return exif
 	end
 end
@@ -571,13 +569,13 @@ class Flickr::SubCategory
 end
 
 class Flickr::Group
-# The privacy attribute is 1 for private groups, 2 for invite-only public
-# groups and 3 for open public groups.
+	# The privacy attribute is 1 for private groups, 2 for invite-only public
+	# groups and 3 for open public groups.
 	PRIVACY = [nil,:private,:invite,:public]
 
 	attr_accessor :nsid, :name, :members, :online, :chatnsid, :inchat,
-		:description, :privacy, :eighteenplus, :fully_fetched, :admin,
-		:photo_count, :iconserver
+	  :description, :privacy, :eighteenplus, :fully_fetched, :admin,
+	  :photo_count, :iconserver
 
 	def initialize(flickr,nsid, name=nil, members=nil, online=nil,
 			chatnsid=nil, inchat=nil)
@@ -609,10 +607,10 @@ end
 
 class Flickr::Context
 	attr_reader :prev_id,:prev_secret,:prev_title,:prev_url,
-	            :next_id,:next_secret,:next_title,:next_url
+	  :next_id,:next_secret,:next_title,:next_url
 
 	def initialize(prev_id,prev_secret,prev_title,prev_url,
-	               next_id,next_secret,next_title,next_url)
+			next_id,next_secret,next_title,next_url)
 		@prev_id = prev_id
 		@prev_secret = prev_secret
 		@prev_title = prev_title
@@ -643,7 +641,7 @@ class Flickr::License
 	def self.from_xml(xml)
 		att = xml.attributes
 		return Flickr::License.new(att['id'],att['name'],
-				att['url'])
+			att['url'])
 	end
 end
 
@@ -682,8 +680,8 @@ class Flickr::Count
 	def self.from_xml(xml)
 		att = xml.attributes
 		return Flickr::Count.new(att['count'].to_i,
-				Time.at(att['fromdate'].to_i),
-				Time.at(att['todate'].to_i))
+			Time.at(att['fromdate'].to_i),
+			Time.at(att['todate'].to_i))
 	end
 end
 
@@ -710,7 +708,7 @@ end
 
 class Flickr::PhotoSet < Array
 	attr_accessor :id, :title, :url, :server, :primary_id,
-		:photo_count, :description, :secret, :owner
+	  :photo_count, :description, :secret, :owner
 
 	def initialize(id,flickr)
 		@id = id
@@ -746,7 +744,7 @@ class Flickr::PhotoSet < Array
 		set.photo_count = att['photos'].to_i
 		set.title = xml.elements['title'].text if xml.elements['title']
 		set.description = xml.elements['description'].text if
-			xml.elements['description']
+		xml.elements['description']
 		if xml.elements['photo']
 			set.clear
 			xml.elements.each('photo') do |el|
@@ -798,9 +796,9 @@ class Flickr::PhotoPool < Array
 		pool.perpage = att['perpage'].to_i if att['perpage']
 		pool.total = att['total'].to_i if att['total']
 		if xml.elements['photo']
-# I'd like to clear the pool, but I can't because I don't know if I'm
-# parsing the full set or just a single "page".
-#			pool.clear
+			# I'd like to clear the pool, but I can't because I don't know if I'm
+			# parsing the full set or just a single "page".
+			#			pool.clear
 			xml.elements.each('photo') do |el|
 				pool.<<(Flickr::Photo.from_xml(el,flickr),true)
 			end

@@ -6,39 +6,40 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["digital:pardoe"]
-  s.date = %q{2009-04-09}
+  s.date = %q{2009-05-23}
   s.description = %q{rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API.}
   s.email = %q{contact@digitalpardoe.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.markdown"
+     "README.markdown"
   ]
   s.files = [
-    "LICENSE",
-    "README.markdown",
-    "Rakefile",
-    "VERSION.yml",
-    "lib/flickr.rb",
-    "lib/flickr/auth.rb",
-    "lib/flickr/base.rb",
-    "lib/flickr/blogs.rb",
-    "lib/flickr/contacts.rb",
-    "lib/flickr/favorites.rb",
-    "lib/flickr/groups.rb",
-    "lib/flickr/interestingness.rb",
-    "lib/flickr/licenses.rb",
-    "lib/flickr/notes.rb",
-    "lib/flickr/people.rb",
-    "lib/flickr/photos.rb",
-    "lib/flickr/photosets.rb",
-    "lib/flickr/pools.rb",
-    "lib/flickr/reflection.rb",
-    "lib/flickr/tags.rb",
-    "lib/flickr/transform.rb",
-    "lib/flickr/upload.rb",
-    "lib/flickr/urls.rb",
-    "test/rflickr_test.rb",
-    "test/test_helper.rb"
+    ".gitignore",
+     "LICENSE",
+     "README.markdown",
+     "Rakefile",
+     "VERSION.yml",
+     "lib/flickr.rb",
+     "lib/flickr/auth.rb",
+     "lib/flickr/base.rb",
+     "lib/flickr/blogs.rb",
+     "lib/flickr/contacts.rb",
+     "lib/flickr/favorites.rb",
+     "lib/flickr/groups.rb",
+     "lib/flickr/interestingness.rb",
+     "lib/flickr/licenses.rb",
+     "lib/flickr/notes.rb",
+     "lib/flickr/people.rb",
+     "lib/flickr/photos.rb",
+     "lib/flickr/photosets.rb",
+     "lib/flickr/pools.rb",
+     "lib/flickr/reflection.rb",
+     "lib/flickr/tags.rb",
+     "lib/flickr/transform.rb",
+     "lib/flickr/upload.rb",
+     "lib/flickr/urls.rb",
+     "rflickr.gemspec",
+     "test/test_suite.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/digitalpardoe/rflickr}
@@ -47,8 +48,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{rFlickr is a Ruby interface to the Flickr API}
   s.test_files = [
-    "test/rflickr_test.rb",
-    "test/test_helper.rb"
+    "test/test_suite.rb"
   ]
 
   if s.respond_to? :specification_version then

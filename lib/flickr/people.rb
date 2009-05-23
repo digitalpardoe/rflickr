@@ -39,14 +39,14 @@ class Flickr::People < Flickr::APIBase
 	def getInfo(user)
 		user = user.nsid if user.class == Flickr::Person
 		res = @flickr.call_method('flickr.people.getInfo',
-				'user_id'=>user)
+			'user_id'=>user)
 		person = Flickr::Person.from_xml(res,@flickr)
 		return person
 	end
 
 	# user can be a Person or an nsid
 	def getPublicGroups(user)
-	require 'flickr/groups'
+		require 'flickr/groups'
 		groups = @flickr.groups
 		user = user.nsid if user.class == Flickr::Person
 		res = @flickr.call_method('flickr.people.getPublicGroups',
@@ -57,7 +57,7 @@ class Flickr::People < Flickr::APIBase
 			nsid = att['nsid']
 
 			g = @flickr.group_cache_lookup(nsid) ||
-				Flickr::Group.new(@flickr,nsid)
+			  Flickr::Group.new(@flickr,nsid)
 
 			g.name = att['name']
 			g.eighteenplus = att['eighteenplus'].to_i == 1
@@ -92,7 +92,7 @@ class Flickr::People < Flickr::APIBase
 	def getUploadStatus(user)
 		user = user.nsid if user.class == Flickr::Person
 		res = @flickr.call_method('flickr.people.getUploadStatus',
-				'user_id'=>user)
+			'user_id'=>user)
 		person = Flickr::Person.from_xml(res,@flickr)
 		return person
 	end

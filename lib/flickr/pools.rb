@@ -61,7 +61,7 @@ class Flickr::Pools < Flickr::APIBase
 			att = el.attributes
 			nsid = att['nsid']
 			g = @flickr.group_cache_lookup(nsid) ||
-				Flickr::Group.new(@flickr,nsid,att['name'])
+			  Flickr::Group.new(@flickr,nsid,att['name'])
 			g.name = att['name']
 			g.admin = att['admin'].to_i == 1
 			g.privacy = Flickr::Group::PRIVACY[att['privacy'].to_i]
@@ -79,7 +79,7 @@ class Flickr::Pools < Flickr::APIBase
 		group = group.id.to_s if group.class == Flickr::PhotoPool
 		args = { 'group_id' => group }
 		args['tags'] = tags.map{|t| t.clean if t.class ==
-			Flick::Tag}.join(',') if tags
+			  Flick::Tag}.join(',') if tags
 		args['extras'] = extras.join(',') if extras.class == Array
 		args['per_page'] = per_page if per_page
 		args['page'] = page if page

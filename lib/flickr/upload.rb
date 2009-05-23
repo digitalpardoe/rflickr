@@ -54,10 +54,10 @@ class Flickr::FormPart
 
 	def to_s
 		([ "Content-Disposition: form-data" ] +
-		attributes.map{|k,v| "#{k}=\"#{v}\""}).
-		join('; ') + "\r\n"+
-		(@mime_type ? "Content-Type: #{@mime_type}\r\n" : '')+
-		"\r\n#{data}"
+			  attributes.map{|k,v| "#{k}=\"#{v}\""}).
+		  join('; ') + "\r\n"+
+		  (@mime_type ? "Content-Type: #{@mime_type}\r\n" : '')+
+		  "\r\n#{data}"
 	end
 end
 
@@ -66,26 +66,26 @@ class Flickr::MultiPartForm
 
 	def initialize(boundary=nil)
 		@boundary = boundary ||
-		    "----------------------------Ruby#{rand(1000000000000)}"
+		  "----------------------------Ruby#{rand(1000000000000)}"
 		@parts = []
 	end
 
 	def to_s
 		"--#@boundary\r\n"+
-		parts.map{|p| p.to_s}.join("\r\n--#@boundary\r\n")+
-		"\r\n--#@boundary--\r\n"
+		  parts.map{|p| p.to_s}.join("\r\n--#@boundary\r\n")+
+		  "\r\n--#@boundary--\r\n"
 	end
 end
 
 class Flickr::Upload < Flickr::APIBase
 
-  # TODO: It would probably be better if we wrapped the fault
-  # in something more meaningful. At the very least, a broad
-  # division of errors, such as retryable and fatal. 
+	# TODO: It would probably be better if we wrapped the fault
+	# in something more meaningful. At the very least, a broad
+	# division of errors, such as retryable and fatal.
 	def error(el)
 		att = el.attributes
 		fe = XMLRPC::FaultException.new(att['code'].to_i,
-				att['msg'])
+			att['msg'])
 		$stderr.puts "ERR: #{fe.faultString} (#{fe.faultCode})"
 		raise fe
 	end
@@ -96,7 +96,7 @@ class Flickr::Upload < Flickr::APIBase
 		parts = []
 		parts << Flickr::FormPart.new('title',title) if title
 		parts << Flickr::FormPart.new('description',description) if
-			description
+		description
 		parts << Flickr::FormPart.new('tags',tags.join(',')) if tags
 		parts << Flickr::FormPart.new('is_public',
 			is_public ?  '1' : '0') if is_public != nil
@@ -109,7 +109,7 @@ class Flickr::Upload < Flickr::APIBase
 
 		parts << Flickr::FormPart.new('api_key',@flickr.api_key)
 		parts << Flickr::FormPart.new('auth_token',
-				@flickr.auth.token.token)
+			@flickr.auth.token.token)
 		parts << Flickr::FormPart.new('api_sig',sig)
 
 		parts << Flickr::FormPart.new('photo',data,mimetype)
@@ -133,10 +133,10 @@ class Flickr::Upload < Flickr::APIBase
 
 	def send_form(form)
 		headers = {"Content-Type" =>
-			"multipart/form-data; boundary=" + form.boundary}
+			  "multipart/form-data; boundary=" + form.boundary}
 
 		http = Net::HTTP.new('www.flickr.com', 80)
-#		http.read_timeout = 900 # 15 minutes max upload time
+		#		http.read_timeout = 900 # 15 minutes max upload time
 		tries = 3
 		begin
 			res=http.post('/services/upload/',form.to_s,headers)
@@ -156,7 +156,7 @@ class Flickr::Upload < Flickr::APIBase
 		data = f.read
 		f.close
 		return upload_image_async(data,mt,filename,title,description,
-				tags, is_public,is_friend,is_family)
+			tags, is_public,is_friend,is_family)
 	end
 
 
@@ -167,7 +167,7 @@ class Flickr::Upload < Flickr::APIBase
 		data = f.read
 		f.close
 		return upload_image(data,mt,filename,title,description,tags, 
-				is_public,is_friend,is_family)
+			is_public,is_friend,is_family)
 	end
 
 	def upload_image_async(data,mimetype,filename,title=nil,description=nil,
@@ -175,10 +175,10 @@ class Flickr::Upload < Flickr::APIBase
 		form = Flickr::MultiPartForm.new
 
 		sig = make_signature(title,description, tags, is_public,
-				is_friend, is_family, true)
+			is_friend, is_family, true)
 		form.parts += prepare_parts(data,mimetype,filename,title,
-				description, tags, is_public, is_friend,
-				is_family, sig, true)
+			description, tags, is_public, is_friend,
+			is_family, sig, true)
 		res = REXML::Document.new(send_form(form).body)
 		error(res.elements['/rsp/err']) if res.elements['/rsp/err']
 		t = Flickr::Ticket.new(res.elements['/rsp/ticketid'].text, self)
@@ -191,10 +191,10 @@ class Flickr::Upload < Flickr::APIBase
 		form = Flickr::MultiPartForm.new
 
 		sig = make_signature(title,description, tags, is_public,
-				is_friend, is_family)
+			is_friend, is_family)
 		form.parts += prepare_parts(data,mimetype,filename,title,
-				description, tags, is_public, is_friend,
-				is_family, sig)
+			description, tags, is_public, is_friend,
+			is_family, sig)
 		res = REXML::Document.new(send_form(form).body)
 		error(res.elements['/rsp/err']) if res.elements['/rsp/err']
 		val = res.elements['/rsp/photoid'].text
@@ -212,11 +212,11 @@ class Flickr::Upload < Flickr::APIBase
 			att = tick.attributes
 			tid = att['id']
 			t = @flickr.ticket_cache_lookup(tid) ||
-				Flickr::Ticket.new(tid,self)
+			  Flickr::Ticket.new(tid,self)
 			t.complete = Flickr::Ticket::COMPLETE[att['complete'].to_i]
 			t.photoid = att['photoid']
 			t.invalid = true if (att['invalid'] &&
-				(att['invalid'].to_i == 1))
+				  (att['invalid'].to_i == 1))
 			@flickr.ticket_cache_store(t)
 			tickets << t
 		end

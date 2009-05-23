@@ -23,7 +23,7 @@ require 'flickr/base'
 class Flickr::Licenses < Flickr::APIBase
 	def getInfo
 		return @flickr.license_cache_lookup if
-			@flickr.license_cache_lookup
+		@flickr.license_cache_lookup
 		list = {}
 		res = @flickr.call_method('flickr.photos.licenses.getInfo')
 		res.elements['/licenses'].each_element do |el|
