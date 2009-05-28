@@ -10,6 +10,7 @@ begin
 		gem.homepage = "http://github.com/digitalpardoe/rflickr"
 		gem.authors = ["digital:pardoe"]
 		gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
+		gem.add_dependency('brianmario-yajl-ruby', '>= 0.5.0')
 	end
 rescue LoadError
 	puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
@@ -48,8 +49,7 @@ Rake::RDocTask.new do |rdoc|
 
 	rdoc.rdoc_dir = 'rdoc'
 	rdoc.title = "rflickr #{version}"
-	rdoc.rdoc_files.include('README*')
-	rdoc.rdoc_files.include('LICENSE*')
+	rdoc.rdoc_files.include('README.markdown')
 	rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
