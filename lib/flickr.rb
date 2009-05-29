@@ -1,3 +1,5 @@
+require 'json'
+
 require 'api/activity'
 require 'api/auth'
 require 'api/blogs'
