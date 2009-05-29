@@ -1,0 +1,1 @@
+require 'photosets/comments'

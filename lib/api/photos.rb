@@ -1,0 +1,6 @@
+require 'photos/comments'
+require 'photos/geo'
+require 'photos/licenses'
+require 'photos/notes'
+require 'photos/transform'
+require 'photos/upload'
