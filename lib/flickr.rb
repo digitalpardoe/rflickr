@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'json'
 
 require 'api/activity'
@@ -20,3 +21,9 @@ require 'api/reflection'
 require 'api/tags'
 require 'api/test'
 require 'api/urls'
+
+class Flickr
+	def initialize(token_cache, api_key, shared_secret)
+		
+	end
+end

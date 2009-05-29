@@ -1,1 +1,1 @@
-require 'photosets/comments'
+require 'api/photosets/comments'

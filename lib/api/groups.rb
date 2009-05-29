@@ -1,2 +1,2 @@
-require 'groups/members'
-require 'groups/pools'
+require 'api/groups/members'
+require 'api/groups/pools'
