@@ -11,6 +11,9 @@ begin
 		gem.authors = ["digital:pardoe"]
 		gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
 		gem.add_dependency('json', '>= 1.1.5')
+		gem.has_rdoc = false
+		gem.rdoc_options = nil
+		gem.extra_rdoc_files = ''
 	end
 rescue LoadError
 	puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
@@ -23,33 +26,4 @@ Rake::TestTask.new(:test) do |test|
 	test.verbose = true
 end
 
-begin
-	require 'rcov/rcovtask'
-	Rcov::RcovTask.new do |test|
-		test.libs << 'test'
-		test.pattern = 'test/**/*_test.rb'
-		test.verbose = true
-	end
-rescue LoadError
-	task :rcov do
-		abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-	end
-end
-
 task :default => :test
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-	if File.exist?('VERSION.yml')
-		config = YAML.load(File.read('VERSION.yml'))
-		version = "#{config[:major]}.#{config[:minor]}.#{config[:patch]}"
-	else
-		version = ""
-	end
-
-	rdoc.rdoc_dir = 'rdoc'
-	rdoc.title = "rflickr #{version}"
-	rdoc.rdoc_files.include('README.markdown')
-	rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
