@@ -5,4 +5,16 @@ class ApiTest
 	def initialize
 
 	end
+
+	def echo
+
+	end
+
+	def login
+
+	end
+
+	def null
+
+	end
 end
