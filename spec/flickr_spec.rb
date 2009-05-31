@@ -27,5 +27,17 @@ describe Flickr do
 		@flickr.tags.should_not == nil
 		@flickr.urls.should_not == nil
 	end
+
+	it "should sucesfully create all sub-objects" do
+		@flickr.groups.members.should_not == nil
+		@flickr.groups.pools.should_not == nil
+		@flickr.photos.comments.should_not == nil
+		@flickr.photos.geo.should_not == nil
+		@flickr.photos.licenses.should_not == nil
+		@flickr.photos.notes.should_not == nil
+		@flickr.photos.transform.should_not == nil
+		@flickr.photos.upload.should_not == nil
+		@flickr.photosets.comments.should_not == nil
+	end
 end
 
