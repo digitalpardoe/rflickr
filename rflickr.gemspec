@@ -6,49 +6,48 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["digital:pardoe"]
-  s.date = %q{2009-05-28}
+  s.date = %q{2009-05-31}
   s.description = %q{rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API.}
   s.email = %q{contact@digitalpardoe.co.uk}
-  s.extra_rdoc_files = [
-    "LICENSE",
-     "README.markdown"
-  ]
   s.files = [
-    ".gitignore",
-     "LICENSE",
-     "README.markdown",
-     "Rakefile",
-     "VERSION.yml",
-     "lib/flickr.rb",
-     "lib/flickr/auth.rb",
-     "lib/flickr/base.rb",
-     "lib/flickr/blogs.rb",
-     "lib/flickr/contacts.rb",
-     "lib/flickr/favorites.rb",
-     "lib/flickr/groups.rb",
-     "lib/flickr/interestingness.rb",
-     "lib/flickr/licenses.rb",
-     "lib/flickr/notes.rb",
-     "lib/flickr/people.rb",
-     "lib/flickr/photos.rb",
-     "lib/flickr/photosets.rb",
-     "lib/flickr/pools.rb",
-     "lib/flickr/reflection.rb",
-     "lib/flickr/tags.rb",
-     "lib/flickr/transform.rb",
-     "lib/flickr/upload.rb",
-     "lib/flickr/urls.rb",
-     "rflickr.gemspec",
-     "test/test_suite.rb"
+    "lib/api/activity.rb",
+     "lib/api/auth.rb",
+     "lib/api/blogs.rb",
+     "lib/api/collections.rb",
+     "lib/api/commons.rb",
+     "lib/api/contacts.rb",
+     "lib/api/favorites.rb",
+     "lib/api/groups.rb",
+     "lib/api/groups/members.rb",
+     "lib/api/groups/pools.rb",
+     "lib/api/interestingness.rb",
+     "lib/api/machinetags.rb",
+     "lib/api/panda.rb",
+     "lib/api/people.rb",
+     "lib/api/photos.rb",
+     "lib/api/photos/comments.rb",
+     "lib/api/photos/geo.rb",
+     "lib/api/photos/licenses.rb",
+     "lib/api/photos/notes.rb",
+     "lib/api/photos/transform.rb",
+     "lib/api/photos/upload.rb",
+     "lib/api/photosets.rb",
+     "lib/api/photosets/comments.rb",
+     "lib/api/places.rb",
+     "lib/api/prefs.rb",
+     "lib/api/reflection.rb",
+     "lib/api/tags.rb",
+     "lib/api/test.rb",
+     "lib/api/urls.rb",
+     "lib/flickr.rb"
   ]
-  s.has_rdoc = true
   s.homepage = %q{http://github.com/digitalpardoe/rflickr}
-  s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{rFlickr is a Ruby interface to the Flickr API}
   s.test_files = [
-    "test/test_suite.rb"
+    "spec/flickr_spec.rb",
+     "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -56,11 +55,11 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<brianmario-yajl-ruby>, [">= 0.5.0"])
+      s.add_runtime_dependency(%q<json>, [">= 0"])
     else
-      s.add_dependency(%q<brianmario-yajl-ruby>, [">= 0.5.0"])
+      s.add_dependency(%q<json>, [">= 0"])
     end
   else
-    s.add_dependency(%q<brianmario-yajl-ruby>, [">= 0.5.0"])
+    s.add_dependency(%q<json>, [">= 0"])
   end
 end
