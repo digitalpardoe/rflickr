@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Pools < Initialize
-	include RestJsonApi
-
+class Pools < ApiBase
 	def add
 
 	end

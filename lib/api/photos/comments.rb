@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Comments < Initialize
-	include RestJsonApi
-
+class Comments < ApiBase
 	def add_comment
 
 	end

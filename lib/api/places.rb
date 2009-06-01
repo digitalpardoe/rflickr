@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Places < Initialize
-	include RestJsonApi
-
+class Places < ApiBase
 	def find
 
 	end

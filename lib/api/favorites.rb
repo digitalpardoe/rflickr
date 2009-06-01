@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Favorites < Initialize
-	include RestJsonApi
-
+class Favorites < ApiBase
 	def add
 
 	end

@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Licenses < Initialize
-	include RestJsonApi
-	
+class Licenses < ApiBase
 	def get_info
 
 	end

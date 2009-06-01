@@ -19,9 +19,13 @@ require 'api/tags'
 require 'api/test'
 require 'api/urls'
 
-require 'core/initialize'
+require 'core/api_base'
 
-class Flickr < Initialize
+class Flickr
+
+	def initialize(token_cache, api_key, shared_secret)
+		ApiBase.setup(token_cache, api_key, shared_secret)
+	end
 
 	# Create instances of all the other classes to allow us to simulate
 	# the Flickr API 'flickr.class.method' convention.

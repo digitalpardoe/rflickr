@@ -40,13 +40,17 @@ describe Flickr do
 		@flickr.photosets.comments.should_not == nil
 	end
 
-	it "parameters should not be nil" do
-		@flickr.api_key.should_not == nil
+	it "should not have nil parameters" do
 		@flickr.activity.api_key.should_not == nil
+		@flickr.auth.api_key.should_not == nil
 	end
 
-	it "parameters should match in everything that includes initialize" do
-		@flickr.api_key.should == @flickr.activity.api_key
+	it "should have matching class variables in all api classes" do
+		@flickr.activity.api_key.should == @flickr.auth.api_key
+	end
+
+	it "should have different class instance variables in all api classes" do
+		@flickr.activity.api.hash.should_not == @flickr.auth.api.hash
 	end
 end
 

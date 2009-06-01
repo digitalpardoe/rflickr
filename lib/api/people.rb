@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class People < Initialize
-	include RestJsonApi
-
+class People < ApiBase
 	def find_by_email
 
 	end

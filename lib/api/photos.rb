@@ -1,4 +1,4 @@
-require 'util/api_header'
+require 'core/api_base'
 
 require 'api/photos/comments'
 require 'api/photos/geo'
@@ -7,9 +7,7 @@ require 'api/photos/notes'
 require 'api/photos/transform'
 require 'api/photos/upload'
 
-class Photos < Initialize
-	include RestJsonApi
-
+class Photos < ApiBase
 	def comments()	@comments	||=	Comments.new	end
 	def geo()		@geo		||=	Geo.new			end
 	def licenses()	@licenses	||=	Licenses.new	end

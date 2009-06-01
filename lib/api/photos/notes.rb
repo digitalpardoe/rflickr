@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Notes < Initialize
-	include RestJsonApi
-
+class Notes < ApiBase
 	def add
 
 	end

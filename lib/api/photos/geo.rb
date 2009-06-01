@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Geo < Initialize
-	include RestJsonApi
-
+class Geo < ApiBase
 	def batch_correct_location
 
 	end

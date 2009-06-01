@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Tags < Initialize
-	include RestJsonApi
-
+class Tags < ApiBase
 	def get_cluster_photos
 
 	end

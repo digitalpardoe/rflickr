@@ -1,8 +1,6 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Commons < Initialize
-	include RestJsonApi
-
+class Commons < ApiBase
 	def get_institutions
 
 	end

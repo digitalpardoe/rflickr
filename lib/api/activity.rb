@@ -1,10 +1,8 @@
-require 'util/api_header'
+require 'core/api_base'
 
-class Activity < Initialize
-	include RestJsonApi
-
+class Activity < ApiBase
 	def user_comments
-
+		
 	end
 
 	def user_photos
