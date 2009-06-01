@@ -27,8 +27,4 @@ module Rest
 			Net::HTTP.get URI.parse(url + query_string)
 		end
 	end
-
-	def sort_arguments(arguments)
-		arguments.sort{ |a,b| a[0]<=>b[0] }
-	end
 end

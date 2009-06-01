@@ -60,5 +60,9 @@ describe Flickr do
 	it "should connect and make api request" do
 		(@flickr.test.echo['stat'] == 'fail' ? true : (@flickr.test.echo['stat'].should == 'ok' ? true : false)).should == true
 	end
+
+	it "should make authorized request" do
+		@flickr.activity.user_photos
+	end
 end
 
