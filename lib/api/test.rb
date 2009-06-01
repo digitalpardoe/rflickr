@@ -5,7 +5,10 @@ require 'core/api_base'
 
 class ApiTest < ApiBase
 	def echo
-
+		method_name = 'flickr.test.echo'
+		authenticated = false
+		
+		@api.call(method_name, nil, authenticated)
 	end
 
 	def login

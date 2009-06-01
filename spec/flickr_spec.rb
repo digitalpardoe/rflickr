@@ -54,7 +54,7 @@ describe Flickr do
 	end
 
 	it "should have something in the api hash already" do
-		@flickr.activity.api.arguments[:format].should_not == nil
+		@flickr.activity.api.arguments['format'].should_not == nil
 	end
 end
 

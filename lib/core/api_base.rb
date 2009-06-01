@@ -10,7 +10,7 @@ class ApiBase
 	end
 
 	def initialize
-		@api = FlickrRestJsonApi.new
+		@api = FlickrRestJsonApi.new(@@api_key)
 	end
 
 	def token_cache

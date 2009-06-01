@@ -11,7 +11,15 @@ class FlickrRestJsonApi
 	API_REQ = 'rest'
 	API_URL = "http://api.flickr.com/services/#{API_REQ}/"
 
-	def initialize
-		@arguments = Hash[:format, API_RSP]
+	def initialize(api_key)
+		@arguments = {'format' => API_RSP, 'api_key'=> api_key}
+	end
+
+	def call(method, arguments, authenticated)
+		if (arguments != nil)
+			@arguments.merge(arguments)
+		end
+
+		make_request(API_URL, @arguments.merge({'method' => method}), authenticated)
 	end
 end
