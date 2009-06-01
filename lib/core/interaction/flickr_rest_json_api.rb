@@ -3,6 +3,7 @@ require 'json'
 require 'core/interaction/request/rest'
 
 class FlickrRestJsonApi
+	include Rest
 
 	attr_accessor :arguments
 
@@ -19,7 +20,7 @@ class FlickrRestJsonApi
 			@arguments.merge(arguments)
 		end
 
-		JSON.parse make_request(API_URL, remove_blank_args(@arguments.merge({'method' => method})), authenticated)
+		JSON.parse make_request(API_URL, remove_blank_args(@arguments.merge({'method' => method})), authenticated).gsub('jsonFlickrApi(', '').gsub(')', '')
 	end
 
 	def remove_blank_args(arguments)
