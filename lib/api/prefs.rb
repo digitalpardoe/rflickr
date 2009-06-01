@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Prefs < RestJsonApi
-	include Initialize
+class Prefs < Initialize
+	include RestJsonApi
 
 	def get_content_type
 

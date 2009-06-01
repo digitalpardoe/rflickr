@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Panda < RestJsonApi
-	include Initialize
+class Panda < Initialize
+	include RestJsonApi
 
 	def get_list
 

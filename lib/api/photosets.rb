@@ -2,8 +2,8 @@ require 'util/api_header'
 
 require 'api/photosets/comments'
 
-class Photosets < RestJsonApi
-	include Initialize
+class Photosets < Initialize
+	include RestJsonApi
 
 	def comments()	@comments	||=	Comments.new	end
 

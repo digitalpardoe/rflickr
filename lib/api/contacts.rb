@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Contacts < RestJsonApi
-	include Initialize
+class Contacts < Initialize
+	include RestJsonApi
 
 	def get_list
 

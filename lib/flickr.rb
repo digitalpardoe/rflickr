@@ -21,8 +21,7 @@ require 'api/urls'
 
 require 'core/initialize'
 
-class Flickr
-	include Initialize
+class Flickr < Initialize
 
 	# Create instances of all the other classes to allow us to simulate
 	# the Flickr API 'flickr.class.method' convention.

@@ -7,8 +7,8 @@ require 'api/photos/notes'
 require 'api/photos/transform'
 require 'api/photos/upload'
 
-class Photos < RestJsonApi
-	include Initialize
+class Photos < Initialize
+	include RestJsonApi
 
 	def comments()	@comments	||=	Comments.new	end
 	def geo()		@geo		||=	Geo.new			end

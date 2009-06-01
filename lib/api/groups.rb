@@ -3,8 +3,8 @@ require 'util/api_header'
 require 'api/groups/members'
 require 'api/groups/pools'
 
-class Groups < RestJsonApi
-	include Initialize
+class Groups < Initialize
+	include RestJsonApi
 
 	def members()	@members		||=	Members.new	end
 	def pools()		@pools			||=	Pools.new	end

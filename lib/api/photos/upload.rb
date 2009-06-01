@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Upload < RestJsonApi
-	include Initialize
+class Upload < Initialize
+	include RestJsonApi
 
 	def check_tickets
 

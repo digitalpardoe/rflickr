@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Auth < RestJsonApi
-	include Initialize
+class Auth < Initialize
+	include RestJsonApi
 
 	def check_token
 

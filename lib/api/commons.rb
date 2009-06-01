@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Commons < RestJsonApi
-	include Initialize
+class Commons < Initialize
+	include RestJsonApi
 
 	def get_institutions
 

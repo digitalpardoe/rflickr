@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Machinetags < RestJsonApi
-	include Initialize
+class Machinetags < Initialize
+	include RestJsonApi
 
 	def get_namespaces
 

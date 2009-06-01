@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Transform < RestJsonApi
-	include Initialize
+class Transform < Initialize
+	include RestJsonApi
 
 	def rotate
 

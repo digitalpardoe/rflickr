@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Blogs < RestJsonApi
-	include Initialize
+class Blogs < Initialize
+	include RestJsonApi
 
 	def get_list
 

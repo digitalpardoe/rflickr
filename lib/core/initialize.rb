@@ -1,4 +1,4 @@
-module Initialize
+class Initialize
 	def initialize(*params)
 		if (params.size != 3 && params.size != 0)
 			raise ArgumentError, 'wrong number of arguments (' + params.size.to_s + ' for 3)'
@@ -6,7 +6,11 @@ module Initialize
 
 		@@token_cache ||= params[0]
 		@@api_key ||= params[1]
-		@@api_key ||= params[2]
+		@@shared_secret ||= params[2]
+
+		if (@@token_cache == nil || @@api_key == nil || @@shared_secret == nil)
+			raise ArgumentError, 'can only leave arguments blank if method called with arguments once'
+		end
 	end
 
 	def token_cache

@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Collections < RestJsonApi
-	include Initialize
+class Collections < Initialize
+	include RestJsonApi
 
 	def get_info
 

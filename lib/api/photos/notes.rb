@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Notes < RestJsonApi
-	include Initialize
+class Notes < Initialize
+	include RestJsonApi
 
 	def add
 

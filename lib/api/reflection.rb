@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Reflection < RestJsonApi
-	include Initialize
+class Reflection < Initialize
+	include RestJsonApi
 
 	def get_method_info
 

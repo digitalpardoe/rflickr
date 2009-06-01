@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Licenses < RestJsonApi
-	include Initialize
+class Licenses < Initialize
+	include RestJsonApi
 	
 	def get_info
 

@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Geo < RestJsonApi
-	include Initialize
+class Geo < Initialize
+	include RestJsonApi
 
 	def batch_correct_location
 

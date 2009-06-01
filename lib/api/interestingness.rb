@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Interestingness < RestJsonApi
-	include Initialize
+class Interestingness < Initialize
+	include RestJsonApi
 
 	def get_list
 

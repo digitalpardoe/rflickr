@@ -1,7 +1,7 @@
 require 'util/api_header'
 
-class Members < RestJsonApi
-	include Initialize
+class Members < Initialize
+	include RestJsonApi
 
 	def get_list
 
