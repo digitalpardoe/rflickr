@@ -20,10 +20,14 @@ class FlickrRestJsonApi
 			@arguments.merge(arguments)
 		end
 
-		JSON.parse make_request(API_URL, remove_blank_args(@arguments.merge({'method' => method})), authenticated).gsub('jsonFlickrApi(', '').gsub(')', '')
+		JSON.parse strip_function(make_request(API_URL, remove_blank_args(@arguments.merge({'method' => method})), authenticated))
 	end
 
 	def remove_blank_args(arguments)
 		arguments.delete_if { |key,value| value == nil }
+	end
+
+	def strip_function(json_string)
+		json_string.gsub('jsonFlickrApi(', '').gsub(')', '')
 	end
 end

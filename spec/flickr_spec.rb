@@ -56,5 +56,9 @@ describe Flickr do
 	it "should have something in the api hash already" do
 		@flickr.activity.api.arguments['format'].should_not == nil
 	end
+
+	it "should make the api request but return a failed object" do
+		@flickr.test.echo['stat'].should == 'fail'
+	end
 end
 
