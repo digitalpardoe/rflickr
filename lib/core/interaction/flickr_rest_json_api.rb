@@ -20,6 +20,10 @@ class FlickrRestJsonApi
 			@arguments.merge(arguments)
 		end
 
-		make_request(API_URL, @arguments.merge({'method' => method}), authenticated)
+		make_request(API_URL, remove_blank_args(@arguments.merge({'method' => method})), authenticated)
+	end
+
+	def remove_blank_args(arguments)
+		arguments.delete_if { |key,value| value == nil }
 	end
 end
