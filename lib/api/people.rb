@@ -1,7 +1,7 @@
-class People
-	def initialize
+require 'util/api_header'
 
-	end
+class People < RestJsonApi
+	include Initialize
 
 	def find_by_email
 

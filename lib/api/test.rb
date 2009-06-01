@@ -1,10 +1,10 @@
+require 'util/api_header'
+
 # This class has a slightly different naming convention to other
 # classes to prevent conflicts with the core Ruby libraries.
 
-class ApiTest
-	def initialize
-
-	end
+class ApiTest < RestJsonApi
+	include Initialize
 
 	def echo
 

@@ -1,7 +1,7 @@
-class Auth
-	def initialize
+require 'util/api_header'
 
-	end
+class Auth < RestJsonApi
+	include Initialize
 
 	def check_token
 

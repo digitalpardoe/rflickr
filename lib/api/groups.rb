@@ -1,13 +1,13 @@
+require 'util/api_header'
+
 require 'api/groups/members'
 require 'api/groups/pools'
 
-class Groups
-	def initialize
+class Groups < RestJsonApi
+	include Initialize
 
-	end
-
-	def members()	@members		||=	Members.new	end
-	def pools()		@pools			||=	Pools.new	end
+	def members()	@members		||=	Members.new(self.token_cache, self.api_key, self.shared_secret)	end
+	def pools()		@pools			||=	Pools.new(self.token_cache, self.api_key, self.shared_secret)	end
 
 	def browse
 

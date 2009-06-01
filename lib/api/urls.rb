@@ -1,7 +1,7 @@
-class Urls
-	def initialize
+require 'util/api_header'
 
-	end
+class Urls < RestJsonApi
+	include Initialize
 
 	def get_group
 

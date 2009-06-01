@@ -1,7 +1,7 @@
-class Upload
-	def initialize
+require 'util/api_header'
 
-	end
+class Upload < RestJsonApi
+	include Initialize
 
 	def check_tickets
 

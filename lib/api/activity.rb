@@ -1,7 +1,7 @@
-class Activity
-	def initialize
+require 'util/api_header'
 
-	end
+class Activity < RestJsonApi
+	include Initialize
 
 	def user_comments
 

@@ -1,11 +1,11 @@
+require 'util/api_header'
+
 require 'api/photosets/comments'
 
-class Photosets
-	def initialize
+class Photosets < RestJsonApi
+	include Initialize
 
-	end
-
-	def comments()	@comments	||=	Comments.new	end
+	def comments()	@comments	||=	Comments.new(self.token_cache, self.api_key, self.shared_secret)	end
 
 	def add_photo
 

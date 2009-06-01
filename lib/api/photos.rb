@@ -1,3 +1,5 @@
+require 'util/api_header'
+
 require 'api/photos/comments'
 require 'api/photos/geo'
 require 'api/photos/licenses'
@@ -5,17 +7,15 @@ require 'api/photos/notes'
 require 'api/photos/transform'
 require 'api/photos/upload'
 
-class Photos
-	def initialize
+class Photos < RestJsonApi
+	include Initialize
 
-	end
-
-	def comments()	@comments	||=	Comments.new	end
-	def geo()		@geo		||=	Geo.new			end
-	def licenses()	@licenses	||=	Licenses.new	end
-	def notes()		@notes		||=	Notes.new		end
-	def transform()	@transform	||=	Transform.new	end
-	def upload()	@upload		||=	Upload.new		end
+	def comments()	@comments	||=	Comments.new(self.token_cache, self.api_key, self.shared_secret)	end
+	def geo()		@geo		||=	Geo.new(self.token_cache, self.api_key, self.shared_secret)			end
+	def licenses()	@licenses	||=	Licenses.new(self.token_cache, self.api_key, self.shared_secret)	end
+	def notes()		@notes		||=	Notes.new(self.token_cache, self.api_key, self.shared_secret)		end
+	def transform()	@transform	||=	Transform.new(self.token_cache, self.api_key, self.shared_secret)	end
+	def upload()	@upload		||=	Upload.new(self.token_cache, self.api_key, self.shared_secret)		end
 
 	def add_tags
 
