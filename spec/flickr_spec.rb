@@ -57,8 +57,8 @@ describe Flickr do
 		@flickr.activity.api.arguments['format'].should_not == nil
 	end
 
-	it "should make the api request but return a failed object" do
-		@flickr.test.echo['stat'].should == 'fail'
+	it "should connect and make api request" do
+		(@flickr.test.echo['stat'] == 'fail' ? true : (@flickr.test.echo['stat'].should == 'ok' ? true : false)).should == true
 	end
 end
 
