@@ -7,7 +7,7 @@ describe Flickr do
 		if (File.exists?(file_path))
 			api_data = File.open(file_path) { |yf| YAML::load( yf ) }
 		else
-			raise 'You need to create api.yml file first'
+			raise IOError, 'you need to create the data/api.yml file containing your details first'
 		end
 		
 		@flickr = Flickr.new(api_data['api_key'], api_data['shared_secret'], api_data['auth_token'])
