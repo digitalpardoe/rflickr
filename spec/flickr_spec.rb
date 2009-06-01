@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Flickr do
 	before(:each) do
-		@flickr = Flickr.new('token_cache', 'api_key', 'shared_secret')
+		@flickr = Flickr.new('key', 'shared_secret', 'auth_token')
 	end
 
 	it "should sucesfully create all objects" do
@@ -41,12 +41,12 @@ describe Flickr do
 	end
 
 	it "should not have nil parameters" do
-		@flickr.activity.api_key.should_not == nil
-		@flickr.auth.api_key.should_not == nil
+		@flickr.activity.api.key.should_not == nil
+		@flickr.auth.api.key.should_not == nil
 	end
 
 	it "should have matching class variables in all api classes" do
-		@flickr.activity.api_key.should == @flickr.auth.api_key
+		@flickr.activity.api.key.should == @flickr.auth.api.key
 	end
 
 	it "should have different class instance variables in all api classes" do

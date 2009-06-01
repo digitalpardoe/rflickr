@@ -2,12 +2,8 @@ require 'net/http'
 require 'uri'
 
 module Rest
-    def make_request(url, arguments, post)
-		if (post)
-			post_request(url, sort_arguments(arguments))
-		else
-			get_request(url, sort_arguments(arguments))
-		end
+    def make_request(url, arguments)
+		get_request(url, sort_arguments(arguments))
 	end
 
 	def get_request(url, arguments)
