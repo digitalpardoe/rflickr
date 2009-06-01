@@ -19,6 +19,9 @@ class ApiTest < ApiBase
 	end
 
 	def null
+		method = 'flickr.test.null'
+		auth = true
 
+		@api.call(method, nil, auth)
 	end
 end
