@@ -2,7 +2,15 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Flickr do
 	before(:each) do
-		@flickr = Flickr.new('key', 'shared_secret', 'auth_token')
+		file_path = File.dirname(__FILE__) + '/data/api.yml'
+
+		if (File.exists?(file_path))
+			api_data = File.open(file_path) { |yf| YAML::load( yf ) }
+		else
+			raise 'You need to create api.yml file first'
+		end
+		
+		@flickr = Flickr.new(api_data['api_key'], api_data['shared_secret'], api_data['auth_token'])
 	end
 
 	it "should sucesfully create all objects" do
@@ -62,7 +70,7 @@ describe Flickr do
 	end
 
 	it "should make authorized request" do
-		@flickr.activity.user_photos
+		@flickr.activity.user_photos['stat'].should == 'ok'
 	end
 end
 
