@@ -27,24 +27,24 @@ class Flickr
 	# Create instances of all the other classes to allow us to simulate
 	# the Flickr API 'flickr.class.method' convention.
 
-	def activity()			@activity		||=	Activity.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def auth()				@auth			||=	Auth.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def blogs()				@blogs			||=	Blogs.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def collections()		@collections	||=	Collections.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def commons()			@commons		||=	Commons.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def contacts()			@contacts		||=	Contacts.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def favorites()			@favorites		||=	Favorites.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def groups()			@groups			||=	Groups.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def interestingness()	@interestingness||=	Interestingness.new(self.token_cache, self.api_key, self.shared_secret)	end
-	def machinetags()		@machinetags	||=	Machinetags.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def panda()				@panda			||=	Panda.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def people()			@people			||=	People.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def photos()			@photos			||=	Photos.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def photosets()			@photosets		||=	Photosets.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def places()			@places			||=	Places.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def prefs()				@prefs			||=	Prefs.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def reflection()		@reflection		||=	Reflection.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def test()				@test			||= ApiTest.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def tags()				@tags			||=	Tags.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def urls()				@urls			||=	Urls.new(self.token_cache, self.api_key, self.shared_secret)			end
+	def activity()			@activity		||=	Activity.new		end
+	def auth()				@auth			||=	Auth.new			end
+	def blogs()				@blogs			||=	Blogs.new			end
+	def collections()		@collections	||=	Collections.new		end
+	def commons()			@commons		||=	Commons.new			end
+	def contacts()			@contacts		||=	Contacts.new		end
+	def favorites()			@favorites		||=	Favorites.new		end
+	def groups()			@groups			||=	Groups.new			end
+	def interestingness()	@interestingness||=	Interestingness.new	end
+	def machinetags()		@machinetags	||=	Machinetags.new		end
+	def panda()				@panda			||=	Panda.new			end
+	def people()			@people			||=	People.new			end
+	def photos()			@photos			||=	Photos.new			end
+	def photosets()			@photosets		||=	Photosets.new		end
+	def places()			@places			||=	Places.new			end
+	def prefs()				@prefs			||=	Prefs.new			end
+	def reflection()		@reflection		||=	Reflection.new		end
+	def test()				@test			||= ApiTest.new			end
+	def tags()				@tags			||=	Tags.new			end
+	def urls()				@urls			||=	Urls.new			end
 end

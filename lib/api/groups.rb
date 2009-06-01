@@ -6,8 +6,8 @@ require 'api/groups/pools'
 class Groups < RestJsonApi
 	include Initialize
 
-	def members()	@members		||=	Members.new(self.token_cache, self.api_key, self.shared_secret)	end
-	def pools()		@pools			||=	Pools.new(self.token_cache, self.api_key, self.shared_secret)	end
+	def members()	@members		||=	Members.new	end
+	def pools()		@pools			||=	Pools.new	end
 
 	def browse
 

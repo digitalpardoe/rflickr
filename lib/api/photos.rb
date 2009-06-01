@@ -10,12 +10,12 @@ require 'api/photos/upload'
 class Photos < RestJsonApi
 	include Initialize
 
-	def comments()	@comments	||=	Comments.new(self.token_cache, self.api_key, self.shared_secret)	end
-	def geo()		@geo		||=	Geo.new(self.token_cache, self.api_key, self.shared_secret)			end
-	def licenses()	@licenses	||=	Licenses.new(self.token_cache, self.api_key, self.shared_secret)	end
-	def notes()		@notes		||=	Notes.new(self.token_cache, self.api_key, self.shared_secret)		end
-	def transform()	@transform	||=	Transform.new(self.token_cache, self.api_key, self.shared_secret)	end
-	def upload()	@upload		||=	Upload.new(self.token_cache, self.api_key, self.shared_secret)		end
+	def comments()	@comments	||=	Comments.new	end
+	def geo()		@geo		||=	Geo.new			end
+	def licenses()	@licenses	||=	Licenses.new	end
+	def notes()		@notes		||=	Notes.new		end
+	def transform()	@transform	||=	Transform.new	end
+	def upload()	@upload		||=	Upload.new		end
 
 	def add_tags
 

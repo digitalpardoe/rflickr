@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Flickr do
 	before(:each) do
-		@flickr = Flickr.new('', '', '')
+		@flickr = Flickr.new('token_cache', 'api_key', 'shared_secret')
 	end
 
 	it "should sucesfully create all objects" do
@@ -38,6 +38,15 @@ describe Flickr do
 		@flickr.photos.transform.should_not == nil
 		@flickr.photos.upload.should_not == nil
 		@flickr.photosets.comments.should_not == nil
+	end
+
+	it "parameters should not be nil" do
+		@flickr.api_key.should_not == nil
+		@flickr.activity.api_key.should_not == nil
+	end
+
+	it "parameters should match in everything that includes initialize" do
+		@flickr.api_key.should == @flickr.activity.api_key
 	end
 end
 
