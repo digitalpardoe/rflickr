@@ -14,26 +14,14 @@ class ApiBase
 	end
 
 	def token_cache
-		begin
-			@@token_cache
-		rescue NameError
-			nil
-		end
+		@@token_cache
 	end
 
 	def api_key
-		begin
-			@@api_key
-		rescue NameError
-			nil
-		end
+		@@api_key
 	end
 
 	def shared_secret
-		begin
-			@@shared_secret
-		rescue NameError
-			nil
-		end
+		@@shared_secret
 	end
 end
