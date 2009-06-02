@@ -48,21 +48,8 @@ describe Flickr do
 		@flickr.photosets.comments.should_not == nil
 	end
 
-	it "should not have nil parameters" do
-		@flickr.activity.api.key.should_not == nil
-		@flickr.auth.api.key.should_not == nil
-	end
-
-	it "should have matching class variables in all api classes" do
-		@flickr.activity.api.key.should == @flickr.auth.api.key
-	end
-
 	it "should have different class instance variables in all api classes" do
 		@flickr.activity.api.hash.should_not == @flickr.auth.api.hash
-	end
-
-	it "should have something in the api hash already" do
-		@flickr.activity.api.arguments['format'].should_not == nil
 	end
 
 	it "should connect and make api request" do

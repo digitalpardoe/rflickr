@@ -5,8 +5,6 @@ require 'digest'
 require 'core/interaction/request/rest'
 
 class FlickrRestJsonApi
-	attr_accessor :arguments
-
 	API_RSP = 'json'
 	API_REQ = 'rest'
 	API_URL = "http://api.flickr.com/services/#{API_REQ}/"
@@ -56,9 +54,9 @@ class FlickrRestJsonApi
 		json_string.gsub('jsonFlickrApi(', '').gsub(')', '')
 	end
 
-	def key()								@@key							end
-	def shared_secret()						@@shared_secret					end
-	def auth_token()						@@auth_token					end
+	def key()							@@key							end
+	def shared_secret()					@@shared_secret					end
+	def auth_token()					@@auth_token					end
 	
 	def key(key)						@@key = key						end
 	def shared_secret(shared_secret)	@@shared_secret = shared_secret	end
