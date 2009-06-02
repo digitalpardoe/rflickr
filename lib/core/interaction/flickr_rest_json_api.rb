@@ -5,8 +5,6 @@ require 'digest'
 require 'core/interaction/request/rest'
 
 class FlickrRestJsonApi
-	include Rest
-
 	attr_accessor :arguments
 
 	API_RSP = 'json'
@@ -23,7 +21,7 @@ class FlickrRestJsonApi
 		@arguments = {'format' => API_RSP, 'api_key' => @@key }
 	end
 
-	def call(method, arguments, authenticated)
+	def call(method, arguments, authenticated, get)
 		if (arguments != nil)
 			@arguments.merge(arguments)
 		end
@@ -36,47 +34,33 @@ class FlickrRestJsonApi
 			@arguments = @arguments.merge({'auth_token' => @@auth_token})
 			@arguments = sort_arguments(@arguments)
 
-			to_hash = @@shared_secret.to_s
-			@arguments.length.times do |i|
-				to_hash << @arguments[i][0] + @arguments[i][1]
+			api_sig = @@shared_secret.to_s
+			@arguments.each { |item| api_sig << item[0] + item[1] }
+			sig_digest = Digest::MD5.hexdigest(api_sig)
 
-			end
-
-			digest = Digest::MD5.hexdigest(to_hash)
-
-			hash = {}
-			@arguments.each do |entry|
-				hash[entry[0]] = entry[1]
-			end
-			@arguments = hash
-
-			@arguments = @arguments.merge({'api_sig' => digest})
+			@arguments.insert(0, ['api_sig', sig_digest])
 		end
 
-		JSON.parse strip_function(make_request(API_URL, @arguments.to_a))
-	end
-
-	def strip_function(json_string)
-		json_string.gsub('jsonFlickrApi(', '').gsub(')', '')
-	end
-
-	def sort_arguments(arguments)
-		arguments.sort{ |a,b| a[0]<=>b[0] }
+		JSON.parse strip_function(Rest.make_request(API_URL, @arguments.class == Array ? @arguments : @arguments.to_a, get))
 	end
 
 	def remove_blank_args(arguments)
 		arguments.delete_if { |key,value| value == nil }
 	end
 
-	def key
-		@@key
+	def sort_arguments(arguments)
+		arguments.sort{ |a,b| a[0]<=>b[0] }
 	end
 
-	def shared_secret
-		@@shared_secret
+	def strip_function(json_string)
+		json_string.gsub('jsonFlickrApi(', '').gsub(')', '')
 	end
 
-	def auth_token
-		@@auth_token
-	end
+	def key()								@@key							end
+	def shared_secret()						@@shared_secret					end
+	def auth_token()						@@auth_token					end
+	
+	def key(key)						@@key = key						end
+	def shared_secret(shared_secret)	@@shared_secret = shared_secret	end
+	def auth_token(auth_token)			@@auth_token = auth_token		end
 end

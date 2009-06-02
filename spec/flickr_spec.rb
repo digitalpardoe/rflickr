@@ -70,7 +70,7 @@ describe Flickr do
 	end
 
 	it "should make authorized request" do
-		@flickr.activity.user_photos['stat'].should == 'ok'
+		@flickr.test.login['stat'].should == 'ok'
 	end
 end
 

@@ -7,21 +7,24 @@ class ApiTest < ApiBase
 	def echo
 		method = 'flickr.test.echo'
 		auth = false
+		get = true
 		
-		@api.call(method, nil, auth)
+		@api.call(method, nil, auth, get)
 	end
 
 	def login
 		method = 'flickr.test.login'
 		auth = true
+		get = true
 
-		@api.call(method, nil, auth)
+		@api.call(method, nil, auth, get)
 	end
 
 	def null
 		method = 'flickr.test.null'
 		auth = true
+		get = true
 
-		@api.call(method, nil, auth)
+		@api.call(method, nil, auth, get)
 	end
 end

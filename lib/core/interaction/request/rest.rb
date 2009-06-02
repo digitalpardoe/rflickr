@@ -1,12 +1,17 @@
 require 'net/http'
 require 'uri'
 
-module Rest
-    def make_request(url, arguments)
-		get_request(url, sort_arguments(arguments))
+class Rest
+    def self.make_request(url, arguments, get)
+		if (get)
+			get_request(url, arguments)
+		elsif
+			puts "Not implemented yet."
+		end
 	end
 
-	def get_request(url, arguments)
+	private
+	def self.get_request(url, arguments)
 		query_string = '?'
 		arguments.length.times do |i|
 			query_string << arguments[i][0] + '=' + arguments[i][1]
