@@ -10,6 +10,7 @@ begin
 		gem.homepage = "http://github.com/digitalpardoe/rflickr"
 		gem.authors = ["digital:pardoe"]
 		gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
+		gem.add_dependency('mime-types')
 	end
 rescue LoadError
 	puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
