@@ -14,12 +14,10 @@ class Rest
 	def self.get_request(url, arguments)
 		query_string = '?'
 		arguments.length.times do |i|
-			query_string << arguments[i][0] + '=' + arguments[i][1]
-
-			if (i != (arguments.length - 1))
-				query_string << '&'
-			end
+			query_string << arguments[i][0] + '=' + arguments[i][1] + '&'
 		end
+
+		query_string = query_string.chomp('&')
 
 		if proxy = ENV['http_proxy']
 			proxy = URI.parse(proxy)
