@@ -16,7 +16,7 @@ class FlickrRestJsonApi
 	end
 
 	def initialize
-		@arguments = {'format' => API_RSP, 'api_key' => @@key }
+		@arguments = { 'format' => API_RSP, 'api_key' => @@key }
 	end
 
 	def call(method, arguments, authenticated, get)
