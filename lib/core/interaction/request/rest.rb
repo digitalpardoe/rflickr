@@ -19,11 +19,13 @@ class Rest
 
 		query_string = query_string.chomp('&')
 
-		if proxy = ENV['http_proxy']
+		if proxy = ENV['http_proxy'] || ENV['HTTP_PROXY']
 			proxy = URI.parse(proxy)
-			Net::HTTP.Proxy(proxy.host, proxy.port).get URI.parse(url + query_string)
+			agent = Net::HTTP.Proxy(proxy.host, proxy.port)
 		else
-			Net::HTTP.get URI.parse(url + query_string)
+			agent = Net::HTTP
 		end
+
+		agent.get URI.parse(url + query_string)
 	end
 end
