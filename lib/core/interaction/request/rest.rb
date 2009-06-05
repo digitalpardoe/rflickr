@@ -3,11 +3,7 @@ require 'uri'
 
 class Rest
     def self.make_request(url, arguments, get)
-		if (get)
-			get_request(url, arguments)
-		elsif
-			puts "Not implemented yet."
-		end
+		get ? get_request(url, arguments) : post_request(url, arguments)
 	end
 
 	private
@@ -27,5 +23,9 @@ class Rest
 		end
 
 		agent.get URI.parse(url + query_string)
+	end
+
+	def self.post_request(url, arguments)
+		
 	end
 end

@@ -20,15 +20,12 @@ class FlickrRestJsonApi
 	end
 
 	def call(method, arguments, authenticated, get)
-		if (arguments != nil)
-			@arguments.merge(arguments)
-		end
+		arguments ? @arguments.merge(arguments) :
 
 		@arguments = @arguments.merge({'method' => method})
-
 		@arguments = remove_blank_args(@arguments)
 
-		if (authenticated)
+		if authenticated
 			@arguments = @arguments.merge({'auth_token' => @@auth_token})
 			@arguments = sort_arguments(@arguments)
 
@@ -47,7 +44,7 @@ class FlickrRestJsonApi
 	end
 
 	def sort_arguments(arguments)
-		arguments.sort{ |a,b| a[0]<=>b[0] }
+		arguments.sort { |a,b| a[0]<=>b[0] }
 	end
 
 	def strip_function(json_string)
