@@ -20,7 +20,7 @@ class FlickrRestJsonApi
 	end
 
 	def call(method, arguments, authenticated, get)
-		arguments ? @arguments.merge(arguments) :
+		arguments ? @arguments.merge(arguments) : nil
 
 		@arguments = @arguments.merge({'method' => method})
 		@arguments = remove_blank_args(@arguments)
