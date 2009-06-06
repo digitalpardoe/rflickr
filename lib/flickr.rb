@@ -35,7 +35,8 @@ class Flickr
 	end
 
 	class Tokens
-		attr_accessor :api_key, :shared_secret, :auth_token
+		attr_reader :api_key, :shared_secret
+		attr_accessor :auth_token
 
 		def initialize(api_key, shared_secret, auth_token)
 			@api_key = api_key
