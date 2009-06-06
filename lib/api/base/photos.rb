@@ -8,12 +8,12 @@ require 'api/base/photos/transform'
 require 'api/base/photos/upload'
 
 class Photos < ApiBase
-	def comments()	@comments	||=	Comments.new	end
-	def geo()		@geo		||=	Geo.new			end
-	def licenses()	@licenses	||=	Licenses.new	end
-	def notes()		@notes		||=	Notes.new		end
-	def transform()	@transform	||=	Transform.new	end
-	def upload()	@upload		||=	Upload.new		end
+	def comments()	@comments	||=	Comments.new(@tokens)	end
+	def geo()		@geo		||=	Geo.new(@tokens)		end
+	def licenses()	@licenses	||=	Licenses.new(@tokens)	end
+	def notes()		@notes		||=	Notes.new(@tokens)		end
+	def transform()	@transform	||=	Transform.new(@tokens)	end
+	def upload()	@upload		||=	Upload.new(@tokens)		end
 
 	def add_tags
 

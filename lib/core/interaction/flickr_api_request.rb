@@ -9,18 +9,9 @@ class FlickrApiRequest
 	API_REQ = 'rest'
 	API_URL = "http://api.flickr.com/services/#{API_REQ}/"
 
-	def self.setup(key, shared_secret, auth_token)
-		@@key ||= key
-		@@shared_secret ||= shared_secret
-		@@auth_token ||= auth_token
-	end
-
-	def self.auth_token(auth_token)
-		@@auth_token = auth_token
-	end
-
-	def initialize
-		@arguments = { 'format' => API_RSP, 'api_key' => @@key }
+	def initialize(tokens)
+		@tokens = tokens
+		@arguments = { 'format' => API_RSP, 'api_key' => @tokens.api_key }
 	end
 
 	def call(method, arguments, authenticated, get)
@@ -30,14 +21,14 @@ class FlickrApiRequest
 		arguments = remove_blank_args(arguments)
 
 		if authenticated
-			if !@@auth_token
+			if !@tokens.auth_token
 				return {'stat' => 'fail'}
 			end
 
-			arguments = arguments.merge({'auth_token' => @@auth_token})
+			arguments = arguments.merge({'auth_token' => @tokens.auth_token})
 			arguments = sort_arguments(arguments)
 
-			api_sig = @@shared_secret.to_s
+			api_sig = @tokens.shared_secret.to_s
 			arguments.each { |item| api_sig << item[0] + item[1] }
 			sig_digest = Digest::MD5.hexdigest(api_sig)
 
