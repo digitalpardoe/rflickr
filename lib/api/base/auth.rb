@@ -16,4 +16,8 @@ class Auth < ApiBase
 	def get_token
 
 	end
+
+	def login_link
+
+	end
 end

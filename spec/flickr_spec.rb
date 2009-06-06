@@ -10,7 +10,7 @@ describe Flickr do
 			raise IOError, 'you need to create the data/api.yml file containing your details first'
 		end
 		
-		@flickr = Flickr.new(api_data['api_key'], api_data['shared_secret'], api_data['auth_token'])
+		@flickr = Flickr.new(api_data['api_key'], api_data['shared_secret'], :auth_token => api_data['auth_token'])
 	end
 
 	it "should sucesfully create all objects" do

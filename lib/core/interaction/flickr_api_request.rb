@@ -9,7 +9,7 @@ class FlickrApiRequest
 	API_REQ = 'rest'
 	API_URL = "http://api.flickr.com/services/#{API_REQ}/"
 
-	def self.setup(key, shared_secret, auth_token=nil)
+	def self.setup(key, shared_secret, auth_token)
 		@@key ||= key
 		@@shared_secret ||= shared_secret
 		@@auth_token ||= auth_token

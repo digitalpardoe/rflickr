@@ -1,6 +1,6 @@
 require 'core/api_base'
 
-require 'api/photosets/comments'
+require 'api/base/photosets/comments'
 
 class Photosets < ApiBase
 	def comments()	@comments	||=	Comments.new	end
