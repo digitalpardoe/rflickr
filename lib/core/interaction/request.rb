@@ -1,13 +1,13 @@
 require 'net/http'
 require 'uri'
 
-class Rest
-    def self.make_request(url, arguments, get)
-		get ? get_request(url, arguments) : post_request(url, arguments)
+class Request
+    def self.make(url, arguments, get)
+		get ? get(url, arguments) : post(url, arguments)
 	end
 
 	private
-	def self.get_request(url, arguments)
+	def self.get(url, arguments)
 		query_string = '?'
 		arguments.length.times do |i|
 			query_string << arguments[i][0] + '=' + arguments[i][1] + '&'
@@ -25,7 +25,7 @@ class Rest
 		agent.get URI.parse(url + query_string)
 	end
 
-	def self.post_request(url, arguments)
+	def self.post(url, arguments)
 		
 	end
 end

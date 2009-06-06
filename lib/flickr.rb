@@ -19,12 +19,16 @@ require 'api/tags'
 require 'api/test'
 require 'api/urls'
 
-require 'core/api_base'
+require 'core/interaction/flickr_api_request'
 
 class Flickr
+	def initialize(api_key, shared_secret, auth_token)
+		FlickrApiRequest.setup(api_key, shared_secret, auth_token)
+	end
 
-	def initialize(token_cache, api_key, shared_secret)
-		ApiBase.setup(token_cache, api_key, shared_secret)
+	def auth_token(auth_token)
+		FlickrApiRequest.auth_token(auth_token)
+		self
 	end
 
 	# Create instances of all the other classes to allow us to simulate

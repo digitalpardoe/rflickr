@@ -1,13 +1,7 @@
-require 'core/interaction/flickr_rest_json_api'
+require 'core/interaction/flickr_api_request'
 
 class ApiBase
-	attr_accessor :api
-
-	def self.setup(api_key, shared_secret, auth_token)
-		FlickrRestJsonApi.setup(api_key, shared_secret, auth_token)
-	end
-
 	def initialize
-		@api = FlickrRestJsonApi.new
+		@@api ||= FlickrApiRequest.new
 	end
 end

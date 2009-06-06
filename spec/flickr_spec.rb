@@ -48,16 +48,20 @@ describe Flickr do
 		@flickr.photosets.comments.should_not == nil
 	end
 
-	it "should have different class instance variables in all api classes" do
-		@flickr.activity.api.hash.should_not == @flickr.auth.api.hash
-	end
-
 	it "should connect and make api request" do
 		(@flickr.test.echo['stat'] == 'fail' ? true : (@flickr.test.echo['stat'].should == 'ok' ? true : false)).should == true
 	end
 
 	it "should make authorized request" do
 		@flickr.test.login['stat'].should == 'ok'
+	end
+
+	it "should not make authorized request" do
+		@flickr.auth_token('some_token').test.login['stat'].should == 'fail'
+	end
+
+	it "should not raise an error on authorized method with nil token" do
+		@flickr.auth_token(nil).test.login['stat'].should == 'fail'
 	end
 end
 
