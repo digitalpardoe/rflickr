@@ -14,7 +14,7 @@ class FlickrApiRequest
 		@arguments = { 'format' => API_RSP, 'api_key' => @tokens.api_key }
 	end
 
-	def call(method, arguments, authenticated, get)
+	def call(method, arguments, authenticated, signed, get)
 		arguments ? arguments = arguments.merge(@arguments) : arguments = @arguments
 
 		arguments = arguments.merge({'method' => method})
@@ -26,18 +26,28 @@ class FlickrApiRequest
 			end
 
 			arguments = arguments.merge({'auth_token' => @tokens.auth_token})
-			arguments = sort_arguments(arguments)
 
-			api_sig = @tokens.shared_secret.to_s
-			arguments.each { |item| api_sig << item[0] + item[1] }
-			sig_digest = Digest::MD5.hexdigest(api_sig)
-
-			arguments.insert(0, ['api_sig', sig_digest])
+			arguments = sign_request(arguments)
+		elsif signed
+			arguments = sign_request(arguments)
 		end
 
 		JSON.parse strip_function(Request.make(API_URL, arguments.class == Array ? arguments : arguments.to_a, get))
 	end
 
+	def sign_request(arguments)
+		arguments = sort_arguments(arguments)
+
+		api_sig = @tokens.shared_secret.clone
+		arguments.each { |item| api_sig << item[0] + item[1] }
+		sig_digest = Digest::MD5.hexdigest(api_sig)
+
+		arguments.insert(0, ['api_sig', sig_digest])
+
+		arguments
+	end
+
+	private
 	def remove_blank_args(arguments)
 		arguments.delete_if { |key,value| value == nil }
 	end

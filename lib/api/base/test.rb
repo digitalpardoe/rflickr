@@ -9,7 +9,7 @@ class ApiTest < ApiBase
 		auth = false
 		get = true
 		
-		@api.call(method, nil, auth, get)
+		@api.call(method, nil, auth, nil, get)
 	end
 
 	def login
@@ -17,7 +17,7 @@ class ApiTest < ApiBase
 		auth = true
 		get = true
 
-		@api.call(method, nil, auth, get)
+		@api.call(method, nil, auth, nil, get)
 	end
 
 	def null
@@ -25,6 +25,6 @@ class ApiTest < ApiBase
 		auth = true
 		get = true
 
-		@api.call(method, nil, auth, get)
+		@api.call(method, nil, auth, nil, get)
 	end
 end

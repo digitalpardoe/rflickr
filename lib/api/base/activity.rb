@@ -7,7 +7,7 @@ class Activity < ApiBase
 		get = true
 		args = {'per_page' => per_page, 'page' => page}
 
-		@api.call(method, args, auth, get)
+		@api.call(method, args, auth, nil, get)
 	end
 
 	def user_photos(timeframe=nil, per_page=nil, page=nil)
@@ -16,6 +16,6 @@ class Activity < ApiBase
 		get = true
 		args = {'timeframe' => timeframe, 'per_page' => per_page, 'page' => page}
 
-		@api.call(method, args, auth, get)
+		@api.call(method, args, auth, nil, get)
 	end
 end

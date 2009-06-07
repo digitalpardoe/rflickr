@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Flickr do
 	before(:each) do
-		file_path = File.dirname(__FILE__) + '/data/api.yml'
+		file_path = File.dirname(__FILE__) + '/config/api.yml'
 
 		if (File.exists?(file_path))
 			api_data = File.open(file_path) { |yf| YAML::load( yf ) }
