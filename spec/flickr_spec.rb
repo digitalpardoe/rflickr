@@ -2,16 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Flickr do
 	before(:each) do
-		file_path = File.dirname(__FILE__) + '/config/api.yml'
-
-		if (File.exists?(file_path))
-			api_data = File.open(file_path) { |yf| YAML::load( yf ) }
-		else
-			raise IOError, 'you need to create the data/api.yml file containing your details first'
-		end
-		
-		@flickr_auth = Flickr.new(api_data['api_key'], api_data['shared_secret'], :auth_token => api_data['auth_token'])
-		@flickr_norm = Flickr.new(api_data['api_key'], api_data['shared_secret'])
+		@flickr_auth = Flickr.new(@@api_data['api_key'], @@api_data['shared_secret'], :auth_token => @@api_data['auth_token'])
+		@flickr_norm = Flickr.new(@@api_data['api_key'], @@api_data['shared_secret'])
 	end
 
 	it "should sucesfully create all objects" do
