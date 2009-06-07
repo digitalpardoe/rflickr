@@ -17,8 +17,14 @@ class Request
 
 	private
 	def self.get(url, arguments)
-		
+		connection.get URI.parse(build_url(url, arguments))
+	end
 
+	def self.post(url, arguments)
+		connection.post_form URI.parse(url), arguments
+	end
+
+	def self.connection
 		if proxy = ENV['http_proxy'] || ENV['HTTP_PROXY']
 			proxy = URI.parse(proxy)
 			agent = Net::HTTP.Proxy(proxy.host, proxy.port)
@@ -26,10 +32,6 @@ class Request
 			agent = Net::HTTP
 		end
 
-		agent.get URI.parse(build_url(url, arguments))
-	end
-
-	def self.post(url, arguments)
-		
+		agent
 	end
 end
