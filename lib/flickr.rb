@@ -27,6 +27,7 @@ class Flickr
 	def initialize(api_key, shared_secret, args=nil)
 		@tokens = Flickr::Tokens.new(api_key, shared_secret, args ? args[:auth_token] : nil)
 		@extended_api = args ? args[:extended] || false : false
+		@api_request = FlickrApiRequest.new(@tokens)
 	end
 
 	def auth_token(auth_token)
@@ -48,24 +49,24 @@ class Flickr
 	# Create instances of all the other classes to allow us to simulate
 	# the Flickr API 'flickr.class.method' convention.
 
-	def activity()			@activity		||=	Activity.new(@tokens)										end
-	def auth()				@auth			||=	@extended_api ?  AuthExt.new(@tokens) : Auth.new(@tokens)	end
-	def blogs()				@blogs			||=	Blogs.new(@tokens)											end
-	def collections()		@collections	||=	Collections.new(@tokens)									end
-	def commons()			@commons		||=	Commons.new(@tokens)										end
-	def contacts()			@contacts		||=	Contacts.new(@tokens)										end
-	def favorites()			@favorites		||=	Favorites.new(@tokens)										end
-	def groups()			@groups			||=	Groups.new(@tokens)											end
-	def interestingness()	@interestingness||=	Interestingness.new(@tokens)								end
-	def machinetags()		@machinetags	||=	Machinetags.new(@tokens)									end
-	def panda()				@panda			||=	Panda.new(@tokens)											end
-	def people()			@people			||=	People.new(@tokens)											end
-	def photos()			@photos			||=	Photos.new(@tokens)											end
-	def photosets()			@photosets		||=	Photosets.new(@tokens)										end
-	def places()			@places			||=	Places.new(@tokens)											end
-	def prefs()				@prefs			||=	Prefs.new(@tokens)											end
-	def reflection()		@reflection		||=	Reflection.new(@tokens)										end
-	def test()				@test			||= ApiTest.new(@tokens)										end
-	def tags()				@tags			||=	Tags.new(@tokens)											end
-	def urls()				@urls			||=	Urls.new(@tokens)											end
+	def activity()			@activity		||=	Activity.new(@api_request)											end
+	def auth()				@auth			||=	@extended_api ?  AuthExt.new(@api_request) : Auth.new(@api_request)	end
+	def blogs()				@blogs			||=	Blogs.new(@api_request)												end
+	def collections()		@collections	||=	Collections.new(@api_request)										end
+	def commons()			@commons		||=	Commons.new(@api_request)											end
+	def contacts()			@contacts		||=	Contacts.new(@api_request)											end
+	def favorites()			@favorites		||=	Favorites.new(@api_request)											end
+	def groups()			@groups			||=	Groups.new(@api_request)											end
+	def interestingness()	@interestingness||=	Interestingness.new(@api_request)									end
+	def machinetags()		@machinetags	||=	Machinetags.new(@api_request)										end
+	def panda()				@panda			||=	Panda.new(@api_request)												end
+	def people()			@people			||=	People.new(@api_request)											end
+	def photos()			@photos			||=	Photos.new(@api_request)											end
+	def photosets()			@photosets		||=	Photosets.new(@api_request)											end
+	def places()			@places			||=	Places.new(@api_request)											end
+	def prefs()				@prefs			||=	Prefs.new(@api_request)												end
+	def reflection()		@reflection		||=	Reflection.new(@api_request)										end
+	def test()				@test			||= ApiTest.new(@api_request)											end
+	def tags()				@tags			||=	Tags.new(@api_request)												end
+	def urls()				@urls			||=	Urls.new(@api_request)												end
 end

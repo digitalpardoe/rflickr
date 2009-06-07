@@ -1,8 +1,5 @@
-require 'core/interaction/flickr_api_request'
-
 class ApiBase
-	def initialize(tokens)
-		@tokens = tokens
-		@api ||= FlickrApiRequest.new(@tokens)
+	def initialize(api)
+		@api = api
 	end
 end
