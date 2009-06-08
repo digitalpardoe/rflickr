@@ -8,13 +8,6 @@ require 'api/base/photos/transform'
 require 'api/base/photos/upload'
 
 class Photos < ApiBase
-	def comments()	@comments	||=	Comments.new(@api)	end
-	def geo()		@geo		||=	Geo.new(@api)		end
-	def licenses()	@licenses	||=	Licenses.new(@api)	end
-	def notes()		@notes		||=	Notes.new(@api)		end
-	def transform()	@transform	||=	Transform.new(@api)	end
-	def upload()	@upload		||=	Upload.new(@api)	end
-
 	def add_tags
 
 	end
@@ -117,5 +110,31 @@ class Photos < ApiBase
 
 	def set_tags
 
+	end
+
+	# Create nested API objects.
+
+	def comments
+		@comments ||= Comments.new(@api)
+	end
+
+	def geo
+		@geo ||= Geo.new(@api)
+	end
+
+	def licenses
+		@licenses ||= Licenses.new(@api)
+	end
+
+	def notes
+		@notes ||= Notes.new(@api)
+	end
+
+	def transform
+		@transform ||= Transform.new(@api)
+	end
+
+	def upload
+		@upload ||= Upload.new(@api)
 	end
 end

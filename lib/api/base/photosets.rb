@@ -3,8 +3,6 @@ require 'core/api_base'
 require 'api/base/photosets/comments'
 
 class Photosets < ApiBase
-	def comments()	@comments	||=	Comments.new(@api)	end
-
 	def add_photo
 
 	end
@@ -47,5 +45,11 @@ class Photosets < ApiBase
 
 	def remove_photo
 
+	end
+
+	# Create nested API objects.
+
+	def comments
+		@comments ||= Comments.new(@api)
 	end
 end

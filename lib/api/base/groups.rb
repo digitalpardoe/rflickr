@@ -4,9 +4,6 @@ require 'api/base/groups/members'
 require 'api/base/groups/pools'
 
 class Groups < ApiBase
-	def members()	@members		||=	Members.new(@api)	end
-	def pools()		@pools			||=	Pools.new(@api)		end
-
 	def browse
 
 	end
@@ -17,5 +14,15 @@ class Groups < ApiBase
 
 	def search
 
+	end
+
+	# Create nested API objects.
+
+	def members
+		@members ||= Members.new(@api)
+	end
+
+	def pools
+		@pools ||= Pools.new(@api)
 	end
 end
