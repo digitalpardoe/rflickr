@@ -16,7 +16,7 @@ class AuthExt < Auth
 	def get_token(frob=@frob)
 		if frob
 			super(frob)
-		elsif
+		else
 			raise ArgumentError, "missing 'frob' argument, perhaps you need to call 'login_link' first"
 		end
 	end
