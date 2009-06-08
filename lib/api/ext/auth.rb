@@ -17,7 +17,7 @@ class AuthExt < Auth
 		if frob
 			super(frob)
 		elsif
-			raise ArgumentError, "requires 'login_link' to be executed first to enable access without arguments"
+			raise ArgumentError, "missing 'frob' argument, perhaps you need to call 'login_link' first"
 		end
 	end
 end
