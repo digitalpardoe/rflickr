@@ -64,5 +64,9 @@ describe Flickr do
 	it "should make a normal request" do
 		@flickr_norm.test.echo['stat'].should == 'ok'
 	end
+
+	it "should pull back a nil" do
+		@flickr_auth.test.null.should == nil
+	end
 end
 

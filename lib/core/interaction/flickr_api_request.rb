@@ -32,7 +32,11 @@ class FlickrApiRequest
 			arguments = sign_request(arguments)
 		end
 
-		JSON.parse strip_function(Request.make(API_URL, arguments.class == Array ? arguments : arguments.to_a, get))
+		begin
+			JSON.parse strip_function(Request.make(API_URL, arguments.class == Array ? arguments : arguments.to_a, get))
+		rescue JSON::ParserError
+			nil
+		end
 	end
 
 	def sign_request(arguments)
