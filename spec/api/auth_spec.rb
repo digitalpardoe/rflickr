@@ -17,5 +17,9 @@ describe Auth do
 		@flickr.auth.login_link
 		@flickr.auth.get_token['stat'].should == 'fail'
 	end
+
+	it "should raise an error when getting token without login_link" do
+		lambda { @flickr.auth.get_token }.should raise_error(ArgumentError)
+	end
 end
 
