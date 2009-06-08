@@ -4,8 +4,8 @@ require 'api/base/groups/members'
 require 'api/base/groups/pools'
 
 class Groups < ApiBase
-	def members()	@members		||=	Members.new(@tokens)	end
-	def pools()		@pools			||=	Pools.new(@tokens)		end
+	def members()	@members		||=	Members.new(@api)	end
+	def pools()		@pools			||=	Pools.new(@api)		end
 
 	def browse
 

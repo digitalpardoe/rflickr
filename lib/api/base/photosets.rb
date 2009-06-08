@@ -3,7 +3,7 @@ require 'core/api_base'
 require 'api/base/photosets/comments'
 
 class Photosets < ApiBase
-	def comments()	@comments	||=	Comments.new(@tokens)	end
+	def comments()	@comments	||=	Comments.new(@api)	end
 
 	def add_photo
 

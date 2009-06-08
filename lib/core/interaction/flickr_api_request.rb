@@ -9,6 +9,8 @@ class FlickrApiRequest
 	API_REQ = 'rest'
 	API_URL = "http://api.flickr.com/services/#{API_REQ}/"
 
+	attr_reader :tokens
+
 	def initialize(tokens)
 		@tokens = tokens
 		@arguments = { 'format' => API_RSP, 'api_key' => @tokens.api_key }

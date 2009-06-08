@@ -12,5 +12,10 @@ describe Auth do
 	it "should sucessfully get the frob" do
 		@flickr.auth.get_frob['stat'].should == 'ok'
 	end
+
+	it "should (probably) fail but not error" do
+		@flickr.auth.login_link
+		@flickr.auth.get_token['stat'].should == 'fail'
+	end
 end
 
