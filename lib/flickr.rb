@@ -54,7 +54,7 @@ class Flickr
 	end
 	
 	def auth
-		@auth ||= @extended_api ?  AuthExt.new(@api_request) : Auth.new(@api_request)
+		@auth ||= @extended_api ? AuthExt.new(@api_request) : Auth.new(@api_request)
 	end
 
 	def blogs
