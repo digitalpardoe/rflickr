@@ -8,8 +8,4 @@ describe Favorites do
 	it "should be able to get the list" do
 		@flickr.favorites.get_list['stat'].should == 'ok'
 	end
-
-	it "should throw an exception when getting the list" do
-		lambda { @flickr.favorites.get_list(nil, nil, nil, 'something', nil, nil)['stat'] }.should raise_error
-	end
 end
