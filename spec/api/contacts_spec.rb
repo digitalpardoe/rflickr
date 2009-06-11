@@ -14,11 +14,11 @@ describe Contacts do
 	end
 
 	it "should throw an argument error when getting the list" do
-		lambda{ @flickr.contacts.get_list('something', nil, nil) }.should raise_error(ArgumentError)
+		lambda { @flickr.contacts.get_list('something', nil, nil) }.should raise_error(ArgumentError)
 	end
 
 	it "should throw an arugment error when getting the recently uploaded list" do
-		lambda{ @flickr.contacts.get_list_recently_uploaded(nil, 'something') }.should raise_error(ArgumentError)
+		lambda { @flickr.contacts.get_list_recently_uploaded(nil, 'something') }.should raise_error(ArgumentError)
 	end
 end
 

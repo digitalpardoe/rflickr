@@ -8,12 +8,12 @@ class Contacts < ApiBase
 		args = {'page' => page, 'per_page' => per_page}
 
 		filter_accepted_values = [ 'friends', 'family', 'both', 'neither' ]
-		valid_filter = filter ? filter_accepted_values.include?(filter) : nil
+		valid_filter = filter ? filter_accepted_values.include?(filter) : true
 
 		if valid_filter == false
-			raise ArgumentError, 'invalid filter value, must be one of - friends, family, both, neither'
+			raise ArgumentError, "invalid filter value, must be one of - #{filter_accepted_values.join(', ')}"
 		else
-			args = args.merge({'filter' => valid_filter})
+			args = args.merge({'filter' => filter})
 		end
 
 		@api.call(method, args, auth, nil, get)
@@ -26,12 +26,12 @@ class Contacts < ApiBase
 		args = {'date_lastupload' => date_lastupload}
 
 		filter_accepted_values = [ 'ff', 'all' ]
-		valid_filter = filter ? filter_accepted_values.include?(filter) : nil
+		valid_filter = filter ? filter_accepted_values.include?(filter) : true
 
 		if valid_filter == false
-			raise ArgumentError, 'invalid filter value, must be one of - ff, all'
+			raise ArgumentError, "invalid filter value, must be one of - #{filter_accepted_values.join(', ')}"
 		else
-			args = args.merge({'filter' => valid_filter})
+			args = args.merge({'filter' => filter})
 		end
 
 		@api.call(method, args, auth, nil, get)
