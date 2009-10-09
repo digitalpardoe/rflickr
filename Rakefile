@@ -4,7 +4,7 @@ require 'rake'
 begin
 	require 'jeweler'
 	Jeweler::Tasks.new do |gem|
-		gem.name = "rflickr"
+		gem.name = "digitalpardoe-rflickr"
 		gem.summary = "rFlickr is a Ruby interface to the Flickr API"
 		gem.email = "contact@digitalpardoe.co.uk"
 		gem.homepage = "http://github.com/digitalpardoe/rflickr"
