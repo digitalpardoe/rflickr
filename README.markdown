@@ -1,9 +1,8 @@
 # rFlickr
 
 To use this version of rFlickr, first you will need to install
-the RubyGem you can do by (from a command line):
+the RubyGem using the following command:
 
-    $ gem sources -a http://gems.github.com (you only have to do this once)
     $ sudo gem install digitalpardoe-rflickr
 
 Then you'll need to get a Flickr API key as detailed here:
