@@ -1,7 +1,7 @@
 require 'core/api_base'
 
 class Activity < ApiBase
-	def user_comments(per_page, page=nil)
+	def user_comments(per_page=nil, page=nil)
 		method = 'flickr.activity.userComments'
 		auth = true
 		get = true

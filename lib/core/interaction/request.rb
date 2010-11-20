@@ -9,7 +9,7 @@ class Request
 	def self.build_url(url, arguments)
 		query_string = '?'
 		arguments.length.times do |i|
-			query_string << arguments[i][0] + '=' + arguments[i][1] + '&'
+			query_string << arguments[i][0].to_s + '=' + arguments[i][1].to_s + '&'
 		end
 
 		url + query_string.chomp('&')

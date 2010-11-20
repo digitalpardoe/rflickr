@@ -45,7 +45,7 @@ class FlickrApiRequest
 		arguments = sort_arguments(arguments)
 
 		api_sig = @tokens.shared_secret.clone
-		arguments.each { |item| api_sig << item[0] + item[1] }
+		arguments.each { |item| api_sig << item[0].to_s + item[1].to_s }
 		sig_digest = Digest::MD5.hexdigest(api_sig)
 
 		arguments.insert(0, ['api_sig', sig_digest])

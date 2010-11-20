@@ -8,5 +8,10 @@ describe Collections do
 	it "should successfully retrieve the collection tree" do
 		@flickr.collections.get_tree['stat'].should == 'ok'
 	end
+	
+	it "should successfully retrieve the collection information" do
+    set_id = @flickr.collections.get_tree['collections']['collection'][0]['id']
+    @flickr.collections.get_info(set_id)['stat'].should == 'ok'
+  end
 end
 
