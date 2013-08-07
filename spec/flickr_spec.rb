@@ -2,8 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Flickr do
 	before(:each) do
-		@flickr_auth = Flickr.new(@@api_data['api_key'], @@api_data['shared_secret'], :auth_token => @@api_data['auth_token'])
-		@flickr_norm = Flickr.new(@@api_data['api_key'], @@api_data['shared_secret'])
+		@flickr_auth = Flickr.new(Flickr.class_variable_get(:@@api_data)['api_key'], Flickr.class_variable_get(:@@api_data)['shared_secret'], :auth_token => Flickr.class_variable_get(:@@api_data)['auth_token'])
+		@flickr_norm = Flickr.new(Flickr.class_variable_get(:@@api_data)['api_key'], Flickr.class_variable_get(:@@api_data)['shared_secret'])
 	end
 
 	it "should sucesfully create all objects" do
@@ -63,10 +63,6 @@ describe Flickr do
 
 	it "should make a normal request" do
 		@flickr_norm.test.echo['stat'].should == 'ok'
-	end
-
-	it "should pull back a nil" do
-		@flickr_auth.test.null.should == nil
 	end
 end
 

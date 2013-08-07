@@ -10,5 +10,5 @@ file_path = File.dirname(__FILE__) + '/config/api.yml'
 if (File.exists?(file_path))
 	@@api_data = File.open(file_path) { |yf| YAML::load( yf ) }
 else
-	raise IOError, 'you need to create the config/api.yml file containing your details first'
+	raise IOError, 'You need to create the config/api.yml file containing your details first'
 end
