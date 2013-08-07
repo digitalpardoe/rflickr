@@ -1,25 +1,28 @@
+# encoding: utf-8
+
 require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
 require 'rake'
 
-begin
-	require 'jeweler'
-	Jeweler::Tasks.new do |gem|
-		gem.name = "rflickr"
-		gem.summary = "rFlickr is a Ruby interface to the Flickr API"
-		gem.email = "contact@digitalpardoe.co.uk"
-		gem.homepage = "http://github.com/digitalpardoe/rflickr"
-		gem.authors = ["digital:pardoe"]
-		gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
-		gem.add_dependency('json')
-		gem.has_rdoc = false
-		gem.rdoc_options = nil
-		gem.extra_rdoc_files = ''
-		gem.files = 'lib/**/*'
-		gem.test_files = 'spec/**/*'
-	end
-rescue LoadError
-	puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "rflickr"
+  gem.homepage = "http://github.com/digitalpardoe/rflickr"
+  gem.summary = "rFlickr is a Ruby interface to the Flickr API"
+  gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
+  gem.email = "contact@digitalpardoe.co.uk"
+  gem.authors = ["Alex Pardoe"]
+  # dependencies defined in Gemfile
 end
+Jeweler::RubygemsDotOrgTasks.new
 
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
@@ -32,4 +35,4 @@ RSpec::Core::RakeTask.new(:rcov) do |spec|
 	spec.rcov_opts = ['--exclude', 'spec,.*/.gem']
 end
 
-task :default => :spec
+task :default => :test
