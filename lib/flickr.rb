@@ -1,27 +1,5 @@
-require 'api/base/activity'
-require 'api/base/auth'
-require 'api/base/blogs'
-require 'api/base/collections'
-require 'api/base/commons'
-require 'api/base/contacts'
-require 'api/base/favorites'
-require 'api/base/groups'
-require 'api/base/interestingness'
-require 'api/base/machinetags'
-require 'api/base/panda'
-require 'api/base/people'
-require 'api/base/photos'
-require 'api/base/photosets'
-require 'api/base/places'
-require 'api/base/prefs'
-require 'api/base/reflection'
-require 'api/base/tags'
-require 'api/base/test'
-require 'api/base/urls'
-
-require 'api/ext/auth'
-
-require 'core/interaction/flickr_api_request'
+Dir[File.dirname(__FILE__) + "/api/**/*.rb"].each { |file| require file }
+Dir[File.dirname(__FILE__) + "/core/**/*.rb"].each { |file| require file }
 
 class Flickr
 	def initialize(api_key, shared_secret, args=nil)
