@@ -49,83 +49,15 @@ class Flickr
 	# Create instances of all the other classes to allow us to simulate
 	# the Flickr API 'flickr.class.method' convention.
 
-	def activity
-		@activity ||= Activity.new(@api_request)
-	end
-	
 	def auth
 		@auth ||= @extended_api ? AuthExt.new(@api_request) : Auth.new(@api_request)
 	end
 
-	def blogs
-		@blogs ||= Blogs.new(@api_request)
-	end
+  def test
+    @test ||= ApiTest.new(@api_request)
+  end
 
-	def collections
-		@collections ||= Collections.new(@api_request)
-	end
-
-	def commons
-		@commons ||= Commons.new(@api_request)
-	end
-
-	def contacts
-		@contacts ||= Contacts.new(@api_request)
-	end
-
-	def favorites
-		@favorites ||= Favorites.new(@api_request)
-	end
-
-	def groups
-		@groups ||= Groups.new(@api_request)
-	end
-
-	def interestingness
-		@interestingness ||= Interestingness.new(@api_request)
-	end
-
-	def machinetags
-		@machinetags ||= Machinetags.new(@api_request)
-	end
-
-	def panda
-		@panda ||= Panda.new(@api_request)
-	end
-
-	def people
-		@people ||= People.new(@api_request)
-	end
-
-	def photos
-		@photos ||= Photos.new(@api_request)
-	end
-
-	def photosets
-		@photosets ||= Photosets.new(@api_request)
-	end
-
-	def places
-		@places ||= Places.new(@api_request)
-	end
-
-	def prefs
-		@prefs ||= Prefs.new(@api_request)
-	end
-
-	def reflection
-		@reflection ||= Reflection.new(@api_request)
-	end
-
-	def test
-		@test ||= ApiTest.new(@api_request)
-	end
-
-	def tags
-		@tags ||= Tags.new(@api_request)
-	end
-
-	def urls
-		@urls ||= Urls.new(@api_request)
-	end
+  def method_missing(methods, *args, &blk)
+    eval("@#{methods} ||= #{methods.capitalize}.new(@api_request)")
+  end
 end
