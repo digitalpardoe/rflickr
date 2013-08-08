@@ -16,7 +16,7 @@ class FlickrApiRequest
 		@arguments = { 'format' => API_RSP, 'api_key' => @tokens.api_key }
 	end
 
-	def call(method, arguments, authenticated, signed, get)
+	def call(method, arguments, authenticated, get)
 		arguments ? arguments = arguments.merge(@arguments) : arguments = @arguments
 
 		arguments = arguments.merge({'method' => method})
@@ -28,11 +28,9 @@ class FlickrApiRequest
 			end
 
 			arguments = arguments.merge({'auth_token' => @tokens.auth_token})
-
-			arguments = sign_request(arguments)
-		elsif signed
-			arguments = sign_request(arguments)
-		end
+    end
+    
+    arguments = sign_request(arguments)
 
 		begin
 			JSON.parse strip_function(Request.make(API_URL, arguments.class == Array ? arguments : arguments.to_a, get))

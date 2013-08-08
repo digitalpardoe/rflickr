@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "json", ">= 0"
+gemspec
 
 group :development do
   gem "rspec", ">= 0"

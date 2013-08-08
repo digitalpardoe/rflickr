@@ -2,9 +2,8 @@ Dir[File.dirname(__FILE__) + "/api/**/*.rb"].each { |file| require file }
 Dir[File.dirname(__FILE__) + "/core/**/*.rb"].each { |file| require file }
 
 class Flickr
-	def initialize(api_key, shared_secret, args=nil)
-		@tokens = Flickr::Tokens.new(api_key, shared_secret, args ? args[:auth_token] : nil)
-		@extended_api = args ? args[:extended] || false : false
+	def initialize(api_key, shared_secret, auth_token=nil)
+		@tokens = Flickr::Tokens.new(api_key, shared_secret, auth_token)
 		@api_request = FlickrApiRequest.new(@tokens)
 	end
 
@@ -24,18 +23,24 @@ class Flickr
 		end
 	end
 
-	# Create instances of all the other classes to allow us to simulate
-	# the Flickr API 'flickr.class.method' convention.
-
-	def auth
-		@auth ||= @extended_api ? AuthExt.new(@api_request) : Auth.new(@api_request)
+	def auth_ext
+		@auth_ext ||= AuthExt.new(@api_request)
 	end
 
-  def test
-    @test ||= ApiTest.new(@api_request)
-  end
+  def method_missing(method, *arguments, &block)
+    if method.to_s =~ /^flickr_[\w]+/
+      self.class.send :define_method, method do |*arguments|
+        if (arguments = arguments.flatten) != []
+          args = arguments[0][:args]
+          auth = arguments[0][:auth]
+          get = arguments[0][:get]
+        end
 
-  def method_missing(methods, *args, &blk)
-    eval("@#{methods} ||= #{methods.capitalize}.new(@api_request)")
+        @api_request.call("#{method.to_s.gsub('_', '.')}", args || {}, (auth == nil ? false : auth), (get == nil ? true : get))
+      end
+      self.send(method, arguments)
+    else
+      super
+    end
   end
 end

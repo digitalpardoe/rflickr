@@ -2,7 +2,7 @@ require 'api/base/auth'
 
 require 'core/interaction/request'
 
-class AuthExt < Auth
+class AuthExt
 	attr_accessor :frob
 
 	def login_link(perms='read')
