@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gemspec
+gem "mime-types", ">= 0"
 
 group :development do
   gem "rdoc", ">= 0"
