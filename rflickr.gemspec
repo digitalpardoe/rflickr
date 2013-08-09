@@ -16,44 +16,17 @@ Gem::Specification.new do |s|
     "README"
   ]
   s.files = [
+    ".autotest",
     ".document",
+    ".rspec",
     "Gemfile",
     "README",
     "Rakefile",
     "VERSION",
-    "lib/api/base/auth.rb",
-    "lib/api/base/blogs.rb",
-    "lib/api/base/collections.rb",
-    "lib/api/base/commons.rb",
-    "lib/api/base/contacts.rb",
-    "lib/api/base/favorites.rb",
-    "lib/api/base/groups.rb",
-    "lib/api/base/groups/members.rb",
-    "lib/api/base/groups/pools.rb",
-    "lib/api/base/interestingness.rb",
-    "lib/api/base/machinetags.rb",
-    "lib/api/base/panda.rb",
-    "lib/api/base/people.rb",
-    "lib/api/base/photos.rb",
-    "lib/api/base/photos/comments.rb",
-    "lib/api/base/photos/geo.rb",
-    "lib/api/base/photos/licenses.rb",
-    "lib/api/base/photos/notes.rb",
-    "lib/api/base/photos/transform.rb",
-    "lib/api/base/photos/upload.rb",
-    "lib/api/base/photosets.rb",
-    "lib/api/base/photosets/comments.rb",
-    "lib/api/base/places.rb",
-    "lib/api/base/prefs.rb",
-    "lib/api/base/reflection.rb",
-    "lib/api/base/tags.rb",
-    "lib/api/base/test.rb",
-    "lib/api/base/urls.rb",
-    "lib/api/ext/auth_ext.rb",
-    "lib/core/api_base.rb",
-    "lib/core/interaction/flickr_api_request.rb",
-    "lib/core/interaction/request.rb",
     "lib/flickr.rb",
+    "lib/flickr/auth_ext.rb",
+    "lib/flickr/interaction/flickr_api_request.rb",
+    "lib/flickr/interaction/request.rb",
     "rflickr.gemspec",
     "spec/api/activity_spec.rb",
     "spec/api/auth_spec.rb",
@@ -69,46 +42,28 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/digitalpardoe/rflickr"
   s.require_paths = ["lib"]
-  s.rubygems_version = "2.0.3"
+  s.rubygems_version = "1.8.25"
   s.summary = "rFlickr is a Ruby interface to the Flickr API"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 4
+    s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rflickr>, [">= 0"])
+      s.add_runtime_dependency(%q<json>, ["~> 1.8.0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_development_dependency(%q<autotest>, [">= 0"])
+      s.add_development_dependency(%q<ZenTest>, [">= 0"])
     else
-      s.add_dependency(%q<rflickr>, [">= 0"])
+      s.add_dependency(%q<json>, ["~> 1.8.0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_dependency(%q<autotest>, [">= 0"])
+      s.add_dependency(%q<ZenTest>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rflickr>, [">= 0"])
+    s.add_dependency(%q<json>, ["~> 1.8.0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-    s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-    s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-    s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-    s.add_dependency(%q<autotest>, [">= 0"])
+    s.add_dependency(%q<ZenTest>, [">= 0"])
   end
 end
 
