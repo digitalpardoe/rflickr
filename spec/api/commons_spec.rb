@@ -6,7 +6,7 @@ describe "Commons" do
 	end
 
 	it "should sucessfully get institutions" do
-		@flickr.flickr_commons_getInstitutions()['stat'].should == 'ok'
+		@flickr.flickr_commons_getInstitutions['stat'].should == 'ok'
 	end
 end
 
