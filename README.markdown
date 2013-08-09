@@ -1,5 +1,7 @@
 # rFlickr
 
+**Warning**: This gem only works with Ruby 1.8, a new version compatible with Ruby 2.0 is coming soon.
+
 To use this version of rFlickr, first you will need to install
 the RubyGem using the following command:
 
@@ -18,6 +20,3 @@ A short guide to get you started can be found here:
 
 The guide is a little out of date in it's gem installation technique,
 use the instructions above instead.
-
-This project is still a work in progress, bear with me whilst it is
-set up.
