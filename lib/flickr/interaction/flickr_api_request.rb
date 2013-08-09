@@ -2,7 +2,7 @@ require 'rubygems'
 require 'json'
 require 'digest'
 
-require 'core/interaction/request'
+require 'flickr/interaction/request'
 
 class FlickrApiRequest
 	API_RSP = 'json'

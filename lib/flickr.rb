@@ -1,5 +1,4 @@
-Dir[File.dirname(__FILE__) + "/api/**/*.rb"].each { |file| require file }
-Dir[File.dirname(__FILE__) + "/core/**/*.rb"].each { |file| require file }
+Dir[File.dirname(__FILE__) + "/flickr/**/*.rb"].each { |file| require file }
 
 class Flickr
 	def initialize(api_key, shared_secret, auth_token=nil)
