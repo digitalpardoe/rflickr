@@ -22,8 +22,8 @@ class Flickr
 		end
 	end
 
-	def auth_ext
-		@auth_ext ||= AuthExt.new(@api_request, self)
+	def api
+		@api ||= Api.new(@api_request, self)
 	end
 
   def method_missing(method, *arguments, &block)

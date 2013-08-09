@@ -1,6 +1,6 @@
 require 'flickr/interaction/request'
 
-class AuthExt
+class Api
 	attr_accessor :frob
   
 	def initialize(api, parent)
