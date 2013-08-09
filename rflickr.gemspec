@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Pardoe"]
-  s.date = "2013-08-08"
+  s.date = "2013-08-09"
   s.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
   s.email = "contact@digitalpardoe.co.uk"
   s.extra_rdoc_files = [
@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
     "lib/api/base/tags.rb",
     "lib/api/base/test.rb",
     "lib/api/base/urls.rb",
-    "lib/api/ext/auth.rb",
+    "lib/api/ext/auth_ext.rb",
     "lib/core/api_base.rb",
     "lib/core/interaction/flickr_api_request.rb",
     "lib/core/interaction/request.rb",
@@ -83,6 +83,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_development_dependency(%q<rspec>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_development_dependency(%q<autotest>, [">= 0"])
     else
       s.add_dependency(%q<rflickr>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
@@ -91,6 +94,9 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+      s.add_dependency(%q<autotest>, [">= 0"])
     end
   else
     s.add_dependency(%q<rflickr>, [">= 0"])
@@ -100,6 +106,9 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
+    s.add_dependency(%q<autotest>, [">= 0"])
   end
 end
 

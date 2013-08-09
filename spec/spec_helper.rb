@@ -12,3 +12,8 @@ if (File.exists?(file_path))
 else
 	raise IOError, 'You need to create the config/api.yml file containing your details first'
 end
+
+RSpec.configure do |config|
+  config.color_enabled = true
+  config.formatter = :documentation
+end

@@ -1,12 +1,11 @@
-require 'api/base/auth'
-
+require 'core/api_base'
 require 'core/interaction/request'
 
-class AuthExt
+class AuthExt < ApiBase
 	attr_accessor :frob
 
 	def login_link(perms='read')
-		@frob = get_frob['frob']['_content']
+		@frob = @super.flickr_auth_getFrob['frob']['_content']
 		args = {'api_key' => @tokens.api_key, 'perms' => perms, 'frob' => @frob}
 		args = @api.sign_request(args)
 
@@ -15,7 +14,7 @@ class AuthExt
 
 	def get_token(frob=@frob)
 		if frob
-			super(frob)
+			@super.flickr_auth_getToken(args: { frob: frob })
 		else
 			raise ArgumentError, "missing 'frob' argument, perhaps you need to call 'login_link' first"
 		end

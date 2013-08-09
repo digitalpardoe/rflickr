@@ -20,6 +20,7 @@ class FlickrApiRequest
 		arguments ? arguments = arguments.merge(@arguments) : arguments = @arguments
 
 		arguments = arguments.merge({'method' => method})
+    arguments = objects_to_strings(arguments)
 		arguments = remove_blank_args(arguments)
 
 		if authenticated
@@ -52,6 +53,14 @@ class FlickrApiRequest
 	end
 
 	private
+  def objects_to_strings(arguments)
+    {}.tap do |hash|
+      arguments.each do |key,value|
+        hash[key.to_s] = value.class == Array ? value.join(",") : value
+      end
+    end
+  end
+  
 	def remove_blank_args(arguments)
 		arguments.delete_if { |key,value| value == nil }
 	end
