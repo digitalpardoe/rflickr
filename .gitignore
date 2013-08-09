@@ -3,3 +3,4 @@ rdoc
 pkg
 nbproject
 *.gem
+Gemfile.lock
