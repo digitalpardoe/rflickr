@@ -13,30 +13,26 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-		gem.name = "digitalpardoe-rflickr"
-		gem.summary = "rFlickr is a Ruby interface to the Flickr API"
-		gem.email = "contact@digitalpardoe.co.uk"
-		gem.homepage = "http://github.com/digitalpardoe/rflickr"
-		gem.authors = ["digital:pardoe"]
-		gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "digitalpardoe-rflickr"
+  gem.homepage = "http://github.com/digitalpardoe/rflickr"
+  gem.summary = "rFlickr is a Ruby interface to the Flickr API"
+  gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
+  gem.email = "contact@digitalpardoe.co.uk"
+  gem.authors = ["Alex Pardoe"]
+  # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+	spec.pattern = 'spec/**/*_spec.rb'
+end
+
+RSpec::Core::RakeTask.new(:rcov) do |spec|
+	spec.pattern = 'spec/**/*_spec.rb'
+	spec.rcov = true
+	spec.rcov_opts = ['--exclude', 'spec,.*/.gem']
 end
 
 task :default => :test
-
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "digitalpardoe-rflickr #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end

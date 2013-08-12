@@ -1,38 +1,45 @@
-# rFlickr: A Ruby based Flickr API implementation.
-# Copyright (C) 2009, Alex Pardoe (digital:pardoe)
-#
-# Derrived from work by Trevor Schroeder, see here:
-# http://rubyforge.org/projects/rflickr/.
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+Dir[File.dirname(__FILE__) + "/flickr/**/*.rb"].each { |file| require file }
 
-require 'flickr/auth'
-require 'flickr/base'
-require 'flickr/blogs'
-require 'flickr/contacts'
-require 'flickr/favorites'
-require 'flickr/groups'
-require 'flickr/licenses'
-require 'flickr/notes'
-require 'flickr/people'
-require 'flickr/photos'
-require 'flickr/photosets'
-require 'flickr/pools'
-require 'flickr/reflection'
-require 'flickr/transform'
-require 'flickr/upload'
-require 'flickr/urls'
-require 'flickr/tags'
-require 'flickr/interestingness'
+class Flickr
+	def initialize(api_key, shared_secret, auth_token=nil)
+		@tokens = Flickr::Tokens.new(api_key, shared_secret, auth_token)
+		@api_request = FlickrApiRequest.new(@tokens)
+	end
+
+	def auth_token(auth_token)
+		@tokens.auth_token = auth_token
+		self
+	end
+
+	class Tokens
+		attr_reader :api_key, :shared_secret
+		attr_accessor :auth_token
+
+		def initialize(api_key, shared_secret, auth_token)
+			@api_key = api_key
+			@shared_secret = shared_secret
+			@auth_token = auth_token
+		end
+	end
+
+	def api
+		@api ||= Api.new(@api_request, self)
+	end
+
+  def method_missing(method, *arguments, &block)
+    if method.to_s =~ /^flickr_[\w]+/
+      self.class.send :define_method, method do |*arguments|
+        if (arguments = arguments.flatten) != []
+          args = arguments[0][:args]
+          auth = arguments[0][:auth]
+          get = arguments[0][:get]
+        end
+
+        @api_request.call("#{method.to_s.gsub('_', '.')}", args || {}, (auth == nil ? false : auth), (get == nil ? true : get))
+      end
+      self.send(method, arguments)
+    else
+      super
+    end
+  end
+end
