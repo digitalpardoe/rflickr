@@ -14,7 +14,7 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "rflickr"
+  gem.name = "digitalpardoe-rflickr"
   gem.homepage = "http://github.com/digitalpardoe/rflickr"
   gem.summary = "rFlickr is a Ruby interface to the Flickr API"
   gem.description = "rFlickr is a clone of the original RubyForge based rflickr, a Ruby implementation of the Flickr API. It includes a faithful albeit old reproduction of the published API."
