@@ -23,11 +23,11 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "digitalpardoe-rflickr.gemspec",
     "lib/flickr.rb",
     "lib/flickr/api.rb",
     "lib/flickr/interaction/flickr_api_request.rb",
     "lib/flickr/interaction/request.rb",
-    "rflickr.gemspec",
     "spec/api/activity_spec.rb",
     "spec/api/api_spec.rb",
     "spec/api/auth_spec.rb",
@@ -67,3 +67,4 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<ZenTest>, [">= 0"])
   end
 end
+
