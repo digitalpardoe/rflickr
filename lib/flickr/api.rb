@@ -13,7 +13,7 @@ class Api
 		args = {'api_key' => @api.tokens.api_key, 'perms' => perms, 'frob' => @frob}
 		args = @api.sign_request(args)
 
-		Request.build_url('http://flickr.com/services/auth/', args)
+		Request.build_url('https://flickr.com/services/auth/', args)
 	end
 
 	def get_token(frob=@frob)

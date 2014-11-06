@@ -7,7 +7,7 @@ require 'flickr/interaction/request'
 class FlickrApiRequest
 	API_RSP = 'json'
 	API_REQ = 'rest'
-	API_URL = "http://api.flickr.com/services/#{API_REQ}/"
+	API_URL = "https://api.flickr.com/services/#{API_REQ}/"
 
 	attr_reader :tokens
 

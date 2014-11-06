@@ -1,8 +1,8 @@
-require 'net/http'
+require 'excon'
 require 'uri'
 
 class Request
-    def self.make(url, arguments, get)
+  def self.make(url, arguments, get)
 		get ? get(url, arguments) : post(url, arguments)
 	end
 
@@ -16,22 +16,11 @@ class Request
 	end
 
 	private
-	def self.get(url, arguments)
-		connection.get URI.parse(build_url(url, arguments))
+	def self.get(url, arguments)    
+		Excon.get("#{url}?" + URI.encode_www_form(arguments)).body
 	end
 
 	def self.post(url, arguments)
-		connection.post_form URI.parse(url), arguments
-	end
-
-	def self.connection
-		if proxy = ENV['http_proxy'] || ENV['HTTP_PROXY']
-			proxy = URI.parse(proxy)
-			agent = Net::HTTP.Proxy(proxy.host, proxy.port)
-		else
-			agent = Net::HTTP
-		end
-
-		agent
+    Excon.post(url, body: URI.encode_www_form(arguments), headers: { "Content-Type" => "application/x-www-form-urlencoded" }).body
 	end
 end
