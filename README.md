@@ -2,13 +2,13 @@
 
 **Note**: This gem has only been tested on Ruby 2.0 (but should work with 1.9).
 
-Before you start using this gem you'll need a Flickr API key from [http://www.flickr.com/services/api/misc.api_keys.html](http://www.flickr.com/services/api/misc.api_keys.html).
+Before you start using this gem you'll need a Flickr API key from [https://www.flickr.com/services/api/misc.api_keys.html](https://www.flickr.com/services/api/misc.api_keys.html).
 
 ## Using the Gem
 
 Add:
 
-    gem 'digitalpardoe-rflickr', '~> 2.0.pre.1'
+    gem 'digitalpardoe-rflickr', '~> 2.0.0'
 
 In your Gemfile then using the gem should be as simple as:
 
@@ -22,7 +22,7 @@ The gem will automatically construct queries to the Flickr API (returning JSON r
 
     flickr.flickr_groups_members_getList( args: { group_id: @group_id, membertypes: [2] }, auth: true )
 
-No checking happens before the request is sent so ensure you've checked the [Flickr API](http://www.flickr.com/services/api/) for the required parameters if you run in to problems.
+No checking happens before the request is sent so ensure you've checked the [Flickr API](https://www.flickr.com/services/api/) for the required parameters if you run in to problems.
 
 If the Flickr method requires a `POST` you can pass `get: false` in the method hash.
 
