@@ -1,5 +1,7 @@
 # rFlickr
 
+[![Project Status: Inactive - The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#inactive)
+
 **Note**: This gem has only been tested on Ruby 2.0 (but should work with 1.9).
 
 Before you start using this gem you'll need a Flickr API key from [https://www.flickr.com/services/api/misc.api_keys.html](https://www.flickr.com/services/api/misc.api_keys.html).
