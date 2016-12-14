@@ -34,9 +34,9 @@ First you'll need an IRB console with rFlickr available so you can `require 'fli
 
     >> flickr = Flickr.new(API_KEY, SHARED_SECRET)
     >> flickr.api.login_link
-    
+
 Navigate to the URL provided and authorise the application.
 
     >> flickr.api.get_token
-    
+
 Store the token received in the response, this is your auth token, you can either use it when you initialise a `Flickr` object or add it at a later point using `flickr.auth_token(AUTH_TOKEN)`.

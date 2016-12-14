@@ -1,30 +1,30 @@
 Dir[File.dirname(__FILE__) + "/flickr/**/*.rb"].each { |file| require file }
 
 class Flickr
-	def initialize(api_key, shared_secret, auth_token=nil)
-		@tokens = Flickr::Tokens.new(api_key, shared_secret, auth_token)
-		@api_request = FlickrApiRequest.new(@tokens)
-	end
+  def initialize(api_key, shared_secret, auth_token=nil)
+    @tokens = Flickr::Tokens.new(api_key, shared_secret, auth_token)
+    @api_request = FlickrApiRequest.new(@tokens)
+  end
 
-	def auth_token(auth_token)
-		@tokens.auth_token = auth_token
-		self
-	end
+  def auth_token(auth_token)
+    @tokens.auth_token = auth_token
+    self
+  end
 
-	class Tokens
-		attr_reader :api_key, :shared_secret
-		attr_accessor :auth_token
+  class Tokens
+    attr_reader :api_key, :shared_secret
+    attr_accessor :auth_token
 
-		def initialize(api_key, shared_secret, auth_token)
-			@api_key = api_key
-			@shared_secret = shared_secret
-			@auth_token = auth_token
-		end
-	end
+    def initialize(api_key, shared_secret, auth_token)
+      @api_key = api_key
+      @shared_secret = shared_secret
+      @auth_token = auth_token
+    end
+  end
 
-	def api
-		@api ||= Api.new(@api_request, self)
-	end
+  def api
+    @api ||= Api.new(@api_request, self)
+  end
 
   def method_missing(method, *arguments, &block)
     if method.to_s =~ /^flickr_[\w]+/

@@ -10,7 +10,7 @@ file_path = File.dirname(__FILE__) + '/config/api.yml'
 if (File.exists?(file_path))
   Flickr.class_variable_set(:@@api_data, File.open(file_path) { |yf| YAML::load( yf ) })['api_key']
 else
-	raise IOError, 'You need to create the config/api.yml file containing your details first'
+  raise IOError, 'You need to create the config/api.yml file containing your details first'
 end
 
 RSpec.configure do |config|
